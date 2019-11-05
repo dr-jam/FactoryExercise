@@ -17,6 +17,13 @@ The goals of this programming exercise are:
 
 ### Assets and Scripts
 
-## Stage 1
+## Stage 1: Damage Engine
 
+damage = WeaponDamage x (TypeFactor)
 
+| Damage Type Factors |         | Shield Type |        |        |
+|:-------------------:|:-------:|:-----------:|:------:|--------|
+|                     |         |   Kenetic   | Energy | Arcane |
+|      WeaponType     | Kenetic |      1      |   0.5  |    2   |
+|                     |  Energy |      2      |    1   |   0.5  |
+|                     |  Arcane |     0.5     |    2   |    1   |
