@@ -48,7 +48,7 @@ damage = ProjectileDamage x (TypeFactor)
 | Damage Type Factors |         | Shield Type |        |        |
 |:-------------------:|:-------:|:-----------:|:------:|--------|
 |                     |         |   Kenetic   | Energy | Arcane |
-|  ProjectileType     | Kenetic |      1      |   0.5  |    2   |
+|  **ProjectileType** | Kenetic |      1      |   0.5  |    2   |
 |                     |  Energy |      2      |    1   |   0.5  |
 |                     |  Arcane |     0.5     |    2   |    1   |
 
