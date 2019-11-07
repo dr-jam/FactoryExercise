@@ -44,6 +44,8 @@ This class does not need to be a `MonoBehavior` or `ScriptableObject`. In fact, 
 
 ## Stage 3: Factories and Specifications
 
+The automated factories in Aegis largely build to external specifications. Specifications consists of the following values and ranges:
+
 Shield Specifications:
 * Capacity: 50 to 250
 * Recharge Delay: 0.5 to 5 seconds
@@ -55,6 +57,9 @@ Projectile Specifications:
 * Charge Time: 0.5 to 3 seconds.
 * Type: Kinetic, Energy, or Arcane.
 
+Your factories should be able `GenerateRandomShield`s and `GenerateRandomProjectile`s with properies within the stated specification ranges.
+
+However, your factories are also limited in the quality of shields and projectiles they can produce. Sheilds are limited to a power rating of 300 while projetiles are limited to a rating of 100. Ratings can be determined by the following functions:
 
 ShieldRating = Capacity + (5 - RechargeDelay) x 5 + RechargeRate * (RechargeRate / 2)
 
