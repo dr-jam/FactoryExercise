@@ -14,12 +14,9 @@ public class ShieldController : MonoBehaviour
     private float CurrentCapacity = 0.0f;
     private HealthBarController healthBarController;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //health bar verification
-        this.CurrentCapacity = this.Capacity;
-        
+        this.CurrentCapacity = this.Capacity;   
         if (!this.HealthBar.TryGetComponent<HealthBarController>(out this.healthBarController))
         {
             Debug.Log("ShieldController expects a health bar.");
@@ -38,7 +35,7 @@ public class ShieldController : MonoBehaviour
 
         if(this.ScrollingText)
         {
-            this.ShowScrollingText(this.CurrentCapacity.ToString());
+            this.ShowScrollingText(damage.ToString());
         }
     }
 
@@ -50,12 +47,17 @@ public class ShieldController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        TakeDamage(20.0f);
+        if ("Projectile" == other.tag)
+        {
+            var damage = other.GetComponent<ProjectileController>().GetDamage();
+            TakeDamage(damage);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        var capacityRatio = this.CurrentCapacity / this.Capacity;
+        this.transform.localScale = new Vector3(capacityRatio, capacityRatio, capacityRatio);
     }
 }
