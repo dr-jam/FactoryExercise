@@ -9,9 +9,7 @@ public class ScrollingText : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(this.transform.position);
         this.transform.position = this.transform.position + this.Offset;
-        Debug.Log(this.transform.position);
         Destroy(this.gameObject, this.ScrollingTextTime);
     }
 

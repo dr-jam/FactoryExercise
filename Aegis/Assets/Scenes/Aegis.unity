@@ -881,7 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4c290490b14194db4db1e7fee78034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Capacity: 10
+  Capacity: 100
   RechargeRate: 1
   RechargeDelay: 1
   Type: 0
