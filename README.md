@@ -8,8 +8,20 @@ The goals of this programming exercise are:
 * to implement tables and equations (as given by designers) as game procedures and logic
 
 ### Grading
+The points distribution for the stages totals to 70 points and can be found in the table below. The remaining 30 points are for your peer-review of another student's submission.
+
+| Stage | Points |
+|:-----:|:------:|
+|  1    |   15   |
+|  2    |   15   |
+|  3.1  |   15   |
+|  3.2  |   10   |
+|  4    |   15   |
+
 
 ### Due Date and Submission Information
+
+This exercise is due Thursday, November 13th at 11:59 pm on GitHub Classroom. The master branch as found on your individual exercise repository will be evaluated.
 
 ## Description of Provided Unity Project
 
