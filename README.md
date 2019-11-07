@@ -24,18 +24,22 @@ The Aegis prototype shield mechanism is nearly complete. Your task to complete t
   * After the shield has taken damage or is not at maximum capacity, it enters a recharge delay peroid lasting `RechargeDelay` seconds.
   * After the recharge delay peroid, the shield begins to recharge at `RechargeRate` capacity points per second.
   * If the shield is damage before it is fully recharged, the shield stops recharging and enters another recharge delay peroid.
+  * Shields cannot recharge greater than their `Capacity` value.
+  * Shield capacity can never be negative.
 
 ## Stage 2: Damage Engine
 
 Create a `DamageEngine` class that implements the following combat algorith:
 
-damage = WeaponDamage x (TypeFactor)
+damage = ProjectileDamage x (TypeFactor)
 
 | Damage Type Factors |         | Shield Type |        |        |
 |:-------------------:|:-------:|:-----------:|:------:|--------|
 |                     |         |   Kenetic   | Energy | Arcane |
-|      WeaponType     | Kenetic |      1      |   0.5  |    2   |
+|  ProjectileType     | Kenetic |      1      |   0.5  |    2   |
 |                     |  Energy |      2      |    1   |   0.5  |
 |                     |  Arcane |     0.5     |    2   |    1   |
 
-This class does not need to be a `MonoBehavior` or `ScriptableObject`. In fact, it doesn't necessarily have to be a class. It does need to provide a static function that takes the parameters of a shield and the parameters of a weapon and returns a damage value as deonted by the combat algorithm.
+This class does not need to be a `MonoBehavior` or `ScriptableObject`. In fact, it doesn't necessarily have to be a class. It does need to provide a static function that takes the parameters of a shield and the parameters of a projectile and returns a damage value as deonted by the combat algorithm.
+
+## Stage 3: 
