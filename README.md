@@ -42,4 +42,20 @@ damage = ProjectileDamage x (TypeFactor)
 
 This class does not need to be a `MonoBehavior` or `ScriptableObject`. In fact, it doesn't necessarily have to be a class. It does need to provide a static function that takes the parameters of a shield and the parameters of a projectile and returns a damage value as deonted by the combat algorithm.
 
-## Stage 3: 
+## Stage 3: Factories and Specifications
+
+Shield Specifications:
+* Capacity: 50 to 250
+* Recharge Delay: 0.5 to 5 seconds
+* Recharge Rate: 1 to 25 capacity per second.
+* Type: Kinetic, Energy, or Arcane.
+
+Projectile Specifications:
+* Damage: 1 to 50
+* Charge Time: 0.5 to 3 seconds.
+* Type: Kinetic, Energy, or Arcane.
+
+
+### Stage 3.1: Basic Projectile and Shield Factories
+
+Create two basic factories. The first should generate shields
