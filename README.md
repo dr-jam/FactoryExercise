@@ -56,6 +56,10 @@ Projectile Specifications:
 * Type: Kinetic, Energy, or Arcane.
 
 
+ShieldRating = Capacity + (5 - RechargeDelay) x 5 + RechargeRate * (RechargeRate / 2)
+
+ProjectileRating = Damage x 2 + (3 - ChargeTime)^4
+
 ### Stage 3.1: Basic Projectile and Shield Factories
 
 Create two basic factories. The first should generate shields
