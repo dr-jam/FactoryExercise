@@ -94,4 +94,15 @@ You factories should not produce shields or projectiles that have power ratings 
 
 *[Still Alive](https://www.youtube.com/watch?v=Y6ljFaKRTrI), Portal, 2007, Jonathan Coulton*  
 
+In the grand traditions of automation and ever-increasing abstraction, this stage tasks you with creating a `TestFactory` that tests the output of factories.
 
+Your `TestFactory`'s build method should create the following:
+* A `SheildSpec`.
+  * A shield based on the generated specifiction.
+* 5 to 10 `ProjectileSpecs`.
+  * Projectile instantiations of those 5 to 10 `ProjectileSpecs`
+* A `TestSchedule` of that is capable of firing the projectiles in a sequential order while respecting their `ChargeTime`s.
+* Setting up the genreated shield GameObject and the `TestSchedule` in the scene.
+* Running the test by shooting the projectiles at the shield via the `TestSchedule`.
+
+You should report failure and huge success with the appropriate fanfare.
