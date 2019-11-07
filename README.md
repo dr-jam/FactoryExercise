@@ -77,4 +77,18 @@ ProjectileRating = Damage x 2 + (3 - ChargeTime)^4
 
 You factories should not produce shields or projectiles that have power ratings higher than the stated limits. If your factory receives a specification with a power rating over the stated limits, your factory should scale down the specification to be within the rating limit. How your factory scales down the specifications is your design choice; you could increase delay or chage times, lower all properties by a percentage, or even randomly generate an entirely new shield.
 
+## Stage 4: Still Alive
 
+>This was a triumph!  
+>I'm making a note here:  
+>Huge success!  
+>  
+>It's hard to overstate  
+>my satisfaction.  
+>  
+>Aperture Science:  
+>We do what we must  
+>because we can  
+>For the good of all of us.  
+>Except the ones who are dead.  
+[Still Alive](https://www.youtube.com/watch?v=Y6ljFaKRTrI), Portal, 2007, Jonathan Coulton
