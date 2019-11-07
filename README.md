@@ -44,6 +44,16 @@ This class does not need to be a `MonoBehavior` or `ScriptableObject`. In fact, 
 
 ## Stage 3: Factories and Specifications
 
+Your task is to create factories that generate shields and projectiles via specification classes. These generated items should be insantiated as `GameObjects`. Use shield and projectile placeholders in the Unity project as a guide for how they should interact with the scene. 
+
+### Stage 3.1: Specific Construction
+
+This task has the following objectivse:
+1. Create a `ShieldFactory` and a `ProjectileFactory` using the factory design pattern.
+2. You need to create `ShieldSpec` and `ProjectileSpec` classes whose only role is to hold a specification to be used by your factory. These type of data classes typically only have properties and no methods.
+3. Your factories `Build` function should take a specification class as a parameter and should Instantiate a new `GameObject` based on the specification.
+4. Your factories should be able `GenerateRandomShield`s and `GenerateRandomProjectile`s with properies within the stated specification ranges.
+
 The automated factories in Aegis largely build to external specifications. Specifications consists of the following values and ranges:
 
 Shield Specifications:
@@ -57,14 +67,14 @@ Projectile Specifications:
 * Charge Time: 0.5 to 3 seconds.
 * Type: Kinetic, Energy, or Arcane.
 
-Your factories should be able `GenerateRandomShield`s and `GenerateRandomProjectile`s with properies within the stated specification ranges.
+### Stage 3.2: Power Underwhelming
 
-However, your factories are also limited in the quality of shields and projectiles they can produce. Sheilds are limited to a power rating of 300 while projetiles are limited to a rating of 100. Ratings can be determined by the following functions:
+Unfortunately, your factories are also limited in the quality of shields and projectiles they can produce. Sheilds are limited to a power rating of 300 while projetiles are limited to a rating of 100. Ratings can be determined by the following functions:
 
 ShieldRating = Capacity + (5 - RechargeDelay) x 5 + RechargeRate * (RechargeRate / 2)
 
 ProjectileRating = Damage x 2 + (3 - ChargeTime)^4
 
-### Stage 3.1: Basic Projectile and Shield Factories
+You factories should not produce shields or projectiles that have power ratings higher than the stated limits. If your factory receives a specification with a power rating over the stated limits, your factory should scale down the specification to be within the rating limit. How your factory scales down the specifications is your design choice; you could increase delay or chage times, lower all properties by a percentage, or even randomly generate an entirely new shield.
 
-Create two basic factories. The first should generate shields
+
