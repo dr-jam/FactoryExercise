@@ -100,7 +100,7 @@ Your `TestFactory`'s build method should create the following:
 * A `SheildSpec`.
   * A shield based on the generated specifiction.
 * 5 to 10 `ProjectileSpecs`.
-  * Projectile instantiations of those 5 to 10 `ProjectileSpecs`
+  * Projectile instantiations of those 5 to 10 `ProjectileSpec`s
 * A `TestSchedule` of that is capable of firing the projectiles in a sequential order while respecting their `ChargeTime`s.
 * Setting up the genreated shield GameObject and the `TestSchedule` in the scene.
 * Running the test by shooting the projectiles at the shield via the `TestSchedule`.
