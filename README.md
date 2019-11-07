@@ -27,6 +27,8 @@ The Aegis prototype shield mechanism is nearly complete. Your task to complete t
 
 ## Stage 2: Damage Engine
 
+Create a `DamageEngine` class that implements the following combat algorith:
+
 damage = WeaponDamage x (TypeFactor)
 
 | Damage Type Factors |         | Shield Type |        |        |
@@ -35,3 +37,5 @@ damage = WeaponDamage x (TypeFactor)
 |      WeaponType     | Kenetic |      1      |   0.5  |    2   |
 |                     |  Energy |      2      |    1   |   0.5  |
 |                     |  Arcane |     0.5     |    2   |    1   |
+
+This class does not need to be a `MonoBehavior` or `ScriptableObject`. In fact, it doesn't necessarily have to be a class. It does need to provide a static function that takes the parameters of a shield and the parameters of a weapon and returns a damage value as deonted by the combat algorithm.
