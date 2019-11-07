@@ -91,4 +91,7 @@ You factories should not produce shields or projectiles that have power ratings 
 >because we can  
 >For the good of all of us.  
 >Except the ones who are dead.  
-[Still Alive](https://www.youtube.com/watch?v=Y6ljFaKRTrI), Portal, 2007, Jonathan Coulton
+
+*[Still Alive](https://www.youtube.com/watch?v=Y6ljFaKRTrI), Portal, 2007, Jonathan Coulton*  
+
+
