@@ -17,7 +17,15 @@ The goals of this programming exercise are:
 
 ### Assets and Scripts
 
-## Stage 1: Damage Engine
+## Stage 1: Shields Online
+
+The Aegis prototype shield mechanism is nearly complete. Your task to complete the shield's functionality by adding a recharging mechanism which consists of the following:
+* Use the `RechargeRate` and `RechargeDelay` properties of the `SheildController` class to enable:
+  * After the shield has taken damage or is not at maximum capacity, it enters a recharge delay peroid lasting `RechargeDelay` seconds.
+  * After the recharge delay peroid, the shield begins to recharge at `RechargeRate` capacity points per second.
+  * If the shield is damage before it is fully recharged, the shield stops recharging and enters another recharge delay peroid.
+
+## Stage 2: Damage Engine
 
 damage = WeaponDamage x (TypeFactor)
 
