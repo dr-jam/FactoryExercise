@@ -23,12 +23,6 @@ The points distribution for the stages totals to 70 points and can be found in t
 
 This exercise is due Thursday, November 13th at 11:59 pm on GitHub Classroom. The master branch as found on your individual exercise repository will be evaluated.
 
-## Description of Provided Unity Project
-
-### Scene and Game Objects in the Hierarchy
-
-### Assets and Scripts
-
 ## Stage 1: Shields Online
 
 The Aegis prototype shield mechanism is nearly complete. Your task to complete the shield's functionality by adding a recharging mechanism which consists of the following:
