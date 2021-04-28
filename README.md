@@ -60,13 +60,13 @@ The Aegis prototype shield mechanism is nearly complete. Your task to complete t
   * After the recharge delay period, the shield begins to recharge at `RechargeRate` capacity points per second.
   * If the shield is damage before it is fully recharged, the shield stops recharging and enters another recharge delay period.
   * Shields cannot recharge greater than their `Capacity` value.
-  * Shield capacity can never be negative.
+  * Shield `Capacity` can never be negative.
 
 ## Stage 2: Damage Engine
 
 Create a `DamageEngine` class that implements the following combat algorith:
 
-damage = ProjectileDamage x (TypeFactor)
+`damage = ProjectileDamage * (TypeFactor)`
 
 | Damage Type Factors |         | Shield Type |        |        |
 |:-------------------:|:-------:|:-----------:|:------:|--------|
@@ -106,9 +106,9 @@ Projectile Specifications:
 
 Unfortunately, your factories are also limited in the quality of shields and projectiles they can produce. Shields are limited to a power rating of 300 while projectiles are limited to a rating of 100. Ratings can be determined by the following functions:
 
-ShieldRating = Capacity + (5 - RechargeDelay) x 5 + RechargeRate * (RechargeRate / 2)
+`ShieldRating = Capacity + (5 - RechargeDelay) * 5 + RechargeRate * (RechargeRate / 2)`
 
-ProjectileRating = Damage x 2 + (3 - ChargeTime)^4
+`ProjectileRating = Damage * 2 + (3 - ChargeTime)^4`
 
 You factories should not produce shields or projectiles that have power ratings higher than the stated limits. If your factory receives a specification with a power rating over the stated limits, your factory should scale down the specification to be within the rating limit. How your factory scales down the specifications is your design choice; you could increase delay or change times, lower all properties by a percentage, or even randomly generate an entirely new shield.
 
