@@ -32,7 +32,20 @@ This exercise is due Wednesday, May 5th at 11:59 pm on GitHub Classroom. The mas
   * **ShieldPedestal** contains a `ShieldPoint` where the shields (i.e. the test subjects) and an instance of the `HealthBar` prefab.
   * **WeaponPedestal** holds the test weapon located at `WeaponPoint` which contains the `ProjectileSpawn` location for new `Projectile`s to spawn at.
 
+### Assets and Scripts
 
+Prefabs of note:  
+* **HealthBar** is a prefab that implements the dynamic health bar shown above the shield.
+* **Projectile** is a prefab for the projectiles shot by the test weapon.
+
+Scripts: 
+* **ShieldController.cs** contains the game logic for test shields. It is where the refreshing capabilities of the shield should be implemented. It contains references to the `ScrollingText` and `HeathBar` instances.
+* **EffectType.cs** holds the `enum` for the weapon projectile damage types.
+* **ManualFire.cs** implements firing a `Projectile` instance that moves from the `ProjectileSpawn` toward the `ShieldPoint` on `jump` input.
+* **ProjectileController.cs** is a component of the `Projectile` prefab that holds the physical paramters of the projectile and has information on the damage the projectile should do to a sheild.
+* **ProjectileMotion.cs** is a component of the `Project` prefab that controls its motion.
+* **HealthBarController.cs** is controls the animation and behaviors of the `HealthBar`.
+* **ScrollingText.cs** partially controlls the upward-scrolling damage values that appear when a `Projectile` collides with a shield.
 
 ## Stage 1: Shields Online
 
