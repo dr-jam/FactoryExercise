@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3261364601268933982}
   - component: {fileID: 8900291417383328641}
   - component: {fileID: 5936785723678481886}
-  - component: {fileID: 610724607691213344}
   - component: {fileID: 7388807348135631193}
   m_Layer: 0
   m_Name: Projectile
@@ -80,19 +79,6 @@ MonoBehaviour:
   Damage: 20
   ChargeDelay: 1
   Type: 0
---- !u!114 &610724607691213344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3622123366438336213}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c521592d02fb842ac60440b8f993ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MuzzleVelocity: {x: -200, y: 0, z: 0}
 --- !u!136 &7388807348135631193
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -126,6 +112,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -141,6 +132,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -152,16 +148,6 @@ PrefabInstance:
     - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
-        type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3053214075280953999, guid: a561aef011e7a7d4ca3825210562af63,
