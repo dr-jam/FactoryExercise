@@ -47,6 +47,11 @@ Scripts:
 * **HealthBarController.cs** is controls the animation and behaviors of the `HealthBar`.
 * **ScrollingText.cs** partially controlls the upward-scrolling damage values that appear when a `Projectile` collides with a shield.
 
+Assets used by the project that you need not manipulate but are otherwise interesting:
+* **ScrollingText** prefab and animation controller.
+* **TextScrollUp** animation.
+* **Consequences** is the font used for the damage display text.
+
 ## Stage 1: Shields Online
 
 The Aegis prototype shield mechanism is nearly complete. Your task to complete the shield's functionality by adding a recharging mechanism which consists of the following:
