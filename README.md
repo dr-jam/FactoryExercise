@@ -23,6 +23,17 @@ The points distribution for the stages totals 70 points and can be found in the 
 
 This exercise is due Wednesday, May 5th at 11:59 pm on GitHub Classroom. The master branch as found on your exercise repository will be evaluated.
 
+## Description of Provided Unity Project 
+
+### Scene and GameObjects in the Hierarcy
+
+* **Main Camera** is the main viewport into the lab.
+* **Laboratory** is the parent for the `GameObject`s that compose the testing facility's laboratory. Inside there are the sides of the room, test pedastals, a weapon on the right (camera-relative), and a shield on the left. 
+  * **ShieldPedestal** contains a `ShieldPoint` where the shields (i.e. the test subjects) and an instance of the `HealthBar` prefab.
+  * **WeaponPedestal** holds the test weapon located at `WeaponPoint` which contains the `ProjectileSpawn` location for new `Projectile`s to spawn at.
+
+
+
 ## Stage 1: Shields Online
 
 The Aegis prototype shield mechanism is nearly complete. Your task to complete the shield's functionality by adding a recharging mechanism which consists of the following:
