@@ -58,7 +58,7 @@ The Aegis prototype shield mechanism is nearly complete. Your task to complete t
 * Use the `RechargeRate` and `RechargeDelay` properties of the `ShieldController` class to enable:
   * After the shield has taken damage or is not at maximum capacity, it enters a recharge delay period lasting `RechargeDelay` seconds.
   * After the recharge delay period, the shield begins to recharge at `RechargeRate` capacity points per second.
-  * If the shield is damage before it is fully recharged, the shield stops recharging and enters another recharge delay period.
+  * If the shield is damaged before it is fully recharged, the shield stops recharging and enters another recharge delay period.
   * Shields cannot recharge greater than their `Capacity` value.
   * Shield `Capacity` can never be negative.
 
