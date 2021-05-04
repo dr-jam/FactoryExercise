@@ -1,5 +1,8 @@
 # ECS189L Programming Exercise 4: The Factory Pattern
 
+# TODO #
+Change Capacity to either MaxCapacity or CurrentCapacity.
+
 ## Description
 
 The goals of this programming exercise are:
