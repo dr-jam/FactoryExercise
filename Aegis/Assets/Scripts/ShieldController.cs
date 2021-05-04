@@ -11,7 +11,7 @@ public class ShieldController : MonoBehaviour
     [SerializeField] private EffectTypes Type = EffectTypes.Kinetic;
     [SerializeField] private GameObject ScrollingText;
     [SerializeField] private GameObject HealthBar;
-    private float CurrentCapacity = 0.0f;
+    [SerializeField] private float CurrentCapacity = 0.0f;
     private HealthBarController healthBarController;
 
     void Start()
@@ -27,12 +27,14 @@ public class ShieldController : MonoBehaviour
     private void TakeDamage(float damage)
     {
         this.CurrentCapacity -= damage;
-        this.healthBarController.ChangeValue(this.CurrentCapacity / this.Capacity);
-        if (this.Capacity < 0.0f)
+        
+        if (this.CurrentCapacity < 0.0f)
         {
-            this.Capacity = 0.0f;
+            this.CurrentCapacity = 0.0f;
         }
 
+        this.healthBarController.ChangeValue(this.CurrentCapacity / this.Capacity);
+        
         if(this.ScrollingText)
         {
             this.ShowScrollingText(damage.ToString());
