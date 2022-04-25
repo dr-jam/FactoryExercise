@@ -46,7 +46,7 @@ Scripts:
 * **EffectType.cs** holds the `enum` for the weapon projectile damage types.
 * **ManualFire.cs** implements firing a `Projectile` instance that moves from the `ProjectileSpawn` toward the `ShieldPoint` on `jump` input.
 * **ProjectileController.cs** is a component of the `Projectile` prefab that holds the physical paramters of the projectile and has information on the damage the projectile should do to a sheild.
-* **ProjectileMotion.cs** is a component of the `Project` prefab that controls its motion.
+* **ProjectileMotion.cs** is a component of the `Projectile` prefab that controls its motion.
 * **HealthBarController.cs** is controls the animation and behaviors of the `HealthBar`.
 * **ScrollingText.cs** partially controlls the upward-scrolling damage values that appear when a `Projectile` collides with a shield.
 
