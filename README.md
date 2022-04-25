@@ -32,7 +32,7 @@ This exercise is due Wednesday, May 5th at 11:59 pm on GitHub Classroom. The mas
 
 * **Main Camera** is the main viewport into the lab.
 * **Laboratory** is the parent for the `GameObject`s that compose the testing facility's laboratory. Inside there are the sides of the room, test pedastals, a weapon on the right (camera-relative), and a shield on the left. 
-  * **ShieldPedestal** contains a `ShieldPoint` where the shields (i.e. the test subjects) and an instance of the `HealthBar` prefab.
+  * **ShieldPedestal** contains a `ShieldPoint` where the shields (i.e. the test subjects) spawn and an instance of the `HealthBar` prefab.
   * **WeaponPedestal** holds the test weapon located at `WeaponPoint` which contains the `ProjectileSpawn` location for new `Projectile`s to spawn at.
 
 ### Assets and Scripts
