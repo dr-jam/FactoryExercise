@@ -31,11 +31,20 @@ public class ShieldController : MonoBehaviour
 
     private void TakeDamage(float damage)
     {
+        float oldCapacity = this.currentCapacity;
         this.currentCapacity -= damage;
         
         if (this.currentCapacity < 0.0f)
         {
             this.currentCapacity = 0.0f;
+        }
+        if (this.currentCapacity <= 0.0f && oldCapacity > 0)
+        {
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Explode");
+        }
+        else if (this.currentCapacity > 0)
+        {
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Shrink");
         }
 
         this.healthBarController.ChangeValue(this.currentCapacity / this.capacity);
