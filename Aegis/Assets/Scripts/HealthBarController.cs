@@ -5,57 +5,57 @@ using UnityEngine;
 public class HealthBarController : MonoBehaviour
 {
     //the actual ratio of full the bar should be after the animation ends
-    [SerializeField] private float Value = 0f;
-    [SerializeField] private AnimationCurve ValueTransitionCurve;
-    [SerializeField] private float ValueTransitionTime = 0.75f;
-    private float TransitionStartTime = 0.0f;
-    private float RatioAtStart = 0.0f;
-    private float CurrentRatio = 0.0f;
+    [SerializeField] private float value = 0f;
+    [SerializeField] private AnimationCurve valueTransitionCurve;
+    [SerializeField] private float valueTransitionTime = 0.75f;
+    private float transitionStartTime = 0.0f;
+    private float ratioAtStart = 0.0f;
+    private float currentRatio = 0.0f;
 
-    [SerializeField] private GameObject ValueSurface;
-    [SerializeField] private GameObject TransitionSurface;
+    [SerializeField] private GameObject valueSurface;
+    [SerializeField] private GameObject transitionSurface;
 
 
     void Start()
     {
-        this.ValueSurface.transform.localScale.Set(0.01f, 1f, 1f);
-        this.TransitionSurface.transform.localScale.Set(0.01f, 1f, 1f);
+        this.valueSurface.transform.localScale.Set(0.01f, 1f, 1f);
+        this.transitionSurface.transform.localScale.Set(0.01f, 1f, 1f);
     }
 
     public void ChangeValue(float targetRatio)
     {
         targetRatio = Mathf.Clamp(targetRatio, 0.0f, 1.0f);
-        this.TransitionStartTime = Time.time;
-        this.RatioAtStart = this.CurrentRatio;
-        this.Value = targetRatio;
+        this.transitionStartTime = Time.time;
+        this.ratioAtStart = this.currentRatio;
+        this.value = targetRatio;
 
-        if (this.Value > this.RatioAtStart)
+        if (this.value > this.ratioAtStart)
         {
-            SetLocalScaleX(this.ValueSurface, this.CurrentRatio);
-            SetLocalScaleX(this.TransitionSurface, this.Value);
+            SetLocalScaleX(this.valueSurface, this.currentRatio);
+            SetLocalScaleX(this.transitionSurface, this.value);
         }
         else
         {
-            SetLocalScaleX(this.ValueSurface, this.Value);
-            SetLocalScaleX(this.TransitionSurface, this.CurrentRatio);
+            SetLocalScaleX(this.valueSurface, this.value);
+            SetLocalScaleX(this.transitionSurface, this.currentRatio);
         }
     }
 
     
     void Update()
     {
-        if ( (Time.time - this.TransitionStartTime) < this.ValueTransitionTime)
+        if ( (Time.time - this.transitionStartTime) < this.valueTransitionTime)
         {
-            if(this.Value > this.RatioAtStart)
+            if(this.value > this.ratioAtStart)
             {           
                 //bar fills
                 //transition bar is behind and longer than value bar
                 //value bar grows to match transition bar   
-                var growRange = this.Value - this.RatioAtStart;
-                var ratioOfTimeDone = (Time.time - this.TransitionStartTime + 0.00001f) / this.ValueTransitionTime;
-                var ratioOfTransition = growRange * this.ValueTransitionCurve.Evaluate(ratioOfTimeDone);
-                SetLocalScaleX(this.ValueSurface, this.RatioAtStart + ratioOfTransition);
-                this.CurrentRatio = this.RatioAtStart + ratioOfTransition;
+                var growRange = this.value - this.ratioAtStart;
+                var ratioOfTimeDone = (Time.time - this.transitionStartTime + 0.00001f) / this.valueTransitionTime;
+                var ratioOfTransition = growRange * this.valueTransitionCurve.Evaluate(ratioOfTimeDone);
+                SetLocalScaleX(this.valueSurface, this.ratioAtStart + ratioOfTransition);
+                this.currentRatio = this.ratioAtStart + ratioOfTransition;
             }
             else
             {
@@ -63,11 +63,11 @@ public class HealthBarController : MonoBehaviour
                 //transition bar is behind and longer than value bar
                 //transition bar shrinks to match value bar 
                 //this.ValueSurface.transform.localScale = 0.01f;   
-                var growRange = this.RatioAtStart - this.Value;
-                var ratioOfTimeDone =  ((Time.time - this.TransitionStartTime) / this.ValueTransitionTime);
-                var ratioOfTransition = growRange * this.ValueTransitionCurve.Evaluate(ratioOfTimeDone);
-                SetLocalScaleX(this.TransitionSurface, this.RatioAtStart - ratioOfTransition);
-                this.CurrentRatio = this.RatioAtStart - ratioOfTransition;
+                var growRange = this.ratioAtStart - this.value;
+                var ratioOfTimeDone =  ((Time.time - this.transitionStartTime) / this.valueTransitionTime);
+                var ratioOfTransition = growRange * this.valueTransitionCurve.Evaluate(ratioOfTimeDone);
+                SetLocalScaleX(this.transitionSurface, this.ratioAtStart - ratioOfTransition);
+                this.currentRatio = this.ratioAtStart - ratioOfTransition;
             }
         }
     }
