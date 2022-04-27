@@ -2,6 +2,7 @@
 
 # TODO #
 Change Capacity to either MaxCapacity or CurrentCapacity.
+Update coding style
 
 ## Description
 
