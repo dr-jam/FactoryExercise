@@ -10,6 +10,7 @@ public class ProjectileMotion : MonoBehaviour
     public void Fire()
     {
         this.GetComponent<Rigidbody>().AddForce(this.MuzzleVelocity);
+        FindObjectOfType<SoundManager>().PlaySoundEffect("Fire");
     }
 
     private void OnTriggerEnter(Collider other)
