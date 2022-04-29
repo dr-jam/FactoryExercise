@@ -71,10 +71,11 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e32ebff7d854cc340b01ef49031436ba, type: 2}
+  - {fileID: 2100000, guid: e7bc33d0dd6837640bfa39a70239b07c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -95,6 +96,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &6309601407808435814
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,12 +109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4c290490b14194db4db1e7fee78034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Capacity: 10
-  RechargeRate: 1
-  RechargeDelay: 1
-  Type: 0
-  ScrollingText: {fileID: 363838215371788088, guid: 0487793b02940b942b43ec860db3be60,
-    type: 3}
+  capacity: 100
+  rechargeRate: 1
+  rechargeDelay: 1
+  type: 0
+  effectTypeColors: {fileID: 0}
+  scrollingText: {fileID: 0}
+  healthBar: {fileID: 0}
+  currentCapacity: 0
 --- !u!54 &6309601407808435813
 Rigidbody:
   m_ObjectHideFlags: 0
