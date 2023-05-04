@@ -12,7 +12,6 @@ public class ManualFire : MonoBehaviour
         if(Input.GetButtonDown("Jump"))
         {
             Destroy(Instantiate(this.Projectile, this.ProjectileSpawn.transform.position, Quaternion.identity), 15f);
-            FindObjectOfType<SoundManager>().PlaySoundEffect("Charge");
         }
     }
 }

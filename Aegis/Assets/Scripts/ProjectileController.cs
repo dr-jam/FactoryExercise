@@ -18,7 +18,7 @@ public class ProjectileController : MonoBehaviour
     {
         this.ChargeTimer = 0f;
         this.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
-
+        FindObjectOfType<SoundManager>().PlaySoundEffect("Charge");
         this.gameObject.GetComponentInChildren<Renderer>().material.SetColor("_Color", this.effectTypeColors.GetColorByEffectType(this.type));
     }
 
@@ -36,6 +36,9 @@ public class ProjectileController : MonoBehaviour
     {
         if(this.ChargeTimer > this.chargeDelay && !this.Fired)
         {
+            FindObjectOfType<SoundManager>().StopSoundEffect("Charge");
+            FindObjectOfType<SoundManager>().PlaySoundEffect("Fire");
+            Debug.Log("fired!");
             this.GetComponent<ProjectileMotion>().Fire();
             this.Fired = true;
         }

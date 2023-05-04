@@ -34,22 +34,22 @@ public class ShieldController : MonoBehaviour
         float oldCapacity = this.currentCapacity;
         this.currentCapacity -= damage;
         
-        if (this.currentCapacity < 0.0f)
+        if (currentCapacity < 0.0f)
         {
-            this.currentCapacity = 0.0f;
+            currentCapacity = 0.0f;
         }
-        if (this.currentCapacity <= 0.0f && oldCapacity > 0)
+        if (currentCapacity <= 0.0f && oldCapacity > 0)
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Explode");
         }
-        else if (this.currentCapacity > 0)
+        else if (currentCapacity > 0)
         {
             FindObjectOfType<SoundManager>().PlaySoundEffect("Shrink");
         }
 
-        this.healthBarController.ChangeValue(this.currentCapacity / this.capacity);
+        this.healthBarController.ChangeValue(currentCapacity / capacity);
         
-        if(this.scrollingText)
+        if(this.scrollingText && oldCapacity > 0)
         {
             this.ShowScrollingText(damage.ToString());
         }
@@ -73,8 +73,8 @@ public class ShieldController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var capacityRatio = this.currentCapacity / this.capacity;
+        var capacityRatio = currentCapacity / capacity;
         this.transform.localScale = new Vector3(capacityRatio, capacityRatio, capacityRatio);
-        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", this.effectTypeColors.GetColorByEffectType(this.type));     
+        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", effectTypeColors.GetColorByEffectType(this.type));     
     }
 }
