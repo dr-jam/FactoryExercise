@@ -12,7 +12,7 @@ The goals of this programming exercise are:
 * to implement tables and equations (as given by designers) as game procedures and logic
 
 ### Grading
-The points distribution for the stages totals 70 points and can be found in the table below. The remaining 30 points are for your peer-review of another student's submission.
+The points distribution for the stages totals 70 points and can be found in the table below. The remaining 30 points are for your peer review of another student's submission.
 
 | Stage | Points |
 |:-----:|:------:|
@@ -46,10 +46,10 @@ Scripts:
 * **ShieldController.cs** contains the game logic for test shields. It is where the refreshing capabilities of the shield should be implemented. It contains references to the `ScrollingText` and `HeathBar` instances.
 * **EffectType.cs** holds the `enum` for the weapon projectile damage types.
 * **ManualFire.cs** implements firing a `Projectile` instance that moves from the `ProjectileSpawn` toward the `ShieldPoint` on `jump` input.
-* **ProjectileController.cs** is a component of the `Projectile` prefab that holds the physical paramters of the projectile and has information on the damage the projectile should do to a sheild.
+* **ProjectileController.cs** is a component of the `Projectile` prefab that holds the physical parameters of the projectile and has information on the damage the projectile should do to a sheild.
 * **ProjectileMotion.cs** is a component of the `Projectile` prefab that controls its motion.
-* **HealthBarController.cs** is controls the animation and behaviors of the `HealthBar`.
-* **ScrollingText.cs** partially controlls the upward-scrolling damage values that appear when a `Projectile` collides with a shield.
+* **HealthBarController.cs** controls the animation and behaviors of the `HealthBar`.
+* **ScrollingText.cs** partially controls the upward-scrolling damage values that appear when a `Projectile` collides with a shield.
 
 Assets used by the project that you need not manipulate but are otherwise interesting:
 * **ScrollingText** prefab and animation controller.
@@ -58,7 +58,7 @@ Assets used by the project that you need not manipulate but are otherwise intere
 
 ## Stage 1: Shields Online
 
-The Aegis prototype shield mechanism is nearly complete. Your task to complete the shield's functionality by adding a recharging mechanism which consists of the following:
+The Aegis prototype shield mechanism is nearly complete. Your task is to complete the shield's functionality by adding a recharging mechanism which consists of the following:
 * Use the `RechargeRate` and `RechargeDelay` properties of the `ShieldController` class to enable:
   * After the shield has taken damage or is not at maximum capacity, it enters a recharge delay period lasting `RechargeDelay` seconds.
   * After the recharge delay period, the shield begins to recharge at `RechargeRate` capacity points per second.
@@ -90,10 +90,10 @@ Your task is to create factories that generate shields and projectiles via speci
 This task has the following objectives:
 1. Create a `ShieldFactory` and a `ProjectileFactory` using the factory design pattern.
 2. You need to create `ShieldSpec` and `ProjectileSpec` classes whose only role is to hold a specification to be used by your factory. These types of data classes typically only have properties and no methods.
-3. Your factories `Build` function should take a specification class as a parameter and should Instantiate a new `GameObject` based on the specification.
+3. Your factories `Build` function should take a specification class as a parameter and should `Instantiate` a new `GameObject` based on the specification.
 4. Your factories should be able `GenerateRandomShield`s and `GenerateRandomProjectile`s with properties within the stated specification ranges.
 
-The automated factories in Aegis largely build to external specifications. Specifications consist of the following values and ranges:
+The automated factories in Aegis primarily build to external specifications. Specifications consist of the following values and ranges:
 
 Shield Specifications:
 * Capacity: 50 to 250
@@ -108,13 +108,13 @@ Projectile Specifications:
 
 ### Stage 3.2: Power Underwhelming
 
-Unfortunately, your factories are also limited in the quality of shields and projectiles they can produce. Shields are limited to a power rating of 300 while projectiles are limited to a rating of 100. Ratings can be determined by the following functions:
+Unfortunately, your factories are also limited in the quality of shields and projectiles they can produce. Shields are limited to a power rating of 300, while projectiles are limited to a rating of 100. The following functions can determine ratings:
 
 `ShieldRating = Capacity + (5 - RechargeDelay) * 5 + RechargeRate * (RechargeRate / 2)`
 
 `ProjectileRating = Damage * 2 + (3 - ChargeTime)^4`
 
-You factories should not produce shields or projectiles that have power ratings higher than the stated limits. If your factory receives a specification with a power rating over the stated limits, your factory should scale down the specification to be within the rating limit. How your factory scales down the specifications is your design choice; you could increase delay or change times, lower all properties by a percentage, or even randomly generate an entirely new shield.
+Your factories should not produce shields or projectiles with power ratings higher than the stated limits. If your factory receives a specification with a power rating over the stated limits, your factory should scale down the specification to be within the rating limit. How your factory scales down the specifications is your design choice; you could increase delay or change times, lower all properties by a percentage, or even randomly generate an entirely new shield.
 
 ## Stage 4: Still Alive
 
@@ -140,7 +140,7 @@ Your `TestFactory`'s build method should create the following:
   * A shield based on the generated specification.
 * 5 to 10 `ProjectileSpecs`.
   * Projectile instantiations of those 5 to 10 `ProjectileSpec`s
-* A `TestSchedule` of that is capable of firing the projectiles in a sequential order while respecting their `ChargeTime`s.
+* A `TestSchedule` that is capable of firing the projectiles in a sequential order while respecting their `ChargeTime`s.
 * Setting up the generated shield GameObject and the `TestSchedule` in the scene.
 * Running the test by shooting the projectiles at the shield via the `TestSchedule`.
 
