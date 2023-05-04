@@ -6,8 +6,8 @@ using Aegis;
 [RequireComponent(typeof(ProjectileMotion))]
 public class ProjectileController : MonoBehaviour
 {
-    [SerializeField] private float Damage = 20.0f;
-    [SerializeField] private float chargeDelay = 1.0f;
+    [SerializeField] private float damage = 20.0f;
+    [SerializeField] private float chargeDelay = 0.5f;
     [SerializeField] private EffectTypes type = EffectTypes.Kinetic;
     [SerializeField] private EffectTypeColors effectTypeColors;
 
@@ -24,7 +24,7 @@ public class ProjectileController : MonoBehaviour
 
     public float GetDamage()
     {
-        return this.Damage;
+        return this.damage;
     }
 
     public EffectTypes GetEffectType()
