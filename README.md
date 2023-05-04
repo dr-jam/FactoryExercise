@@ -25,7 +25,7 @@ The points distribution for the stages totals 70 points and can be found in the 
 
 ### Due Date and Submission Information
 
-This exercise is due Wednesday, May 5th at 11:59 pm on GitHub Classroom. The master branch as found on your exercise repository will be evaluated.
+The due date and submission information is on the official class communication channels.
 
 ## Description of Provided Unity Project 
 
