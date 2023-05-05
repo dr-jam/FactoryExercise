@@ -8,6 +8,7 @@ public class HealthBarController : MonoBehaviour
     [SerializeField] private float value = 0f;
     [SerializeField] private AnimationCurve valueTransitionCurve;
     [SerializeField] private float valueTransitionTime = 0.75f;
+    [SerializeField] private float valueChangeThresholdForAnimation = 0.02f;
     private float transitionStartTime = 0.0f;
     private float ratioAtStart = 0.0f;
     private float currentRatio = 0.0f;
@@ -25,17 +26,24 @@ public class HealthBarController : MonoBehaviour
     public void ChangeValue(float targetRatio)
     {
         targetRatio = Mathf.Clamp(targetRatio, 0.0f, 1.0f);
-        this.transitionStartTime = Time.time;
+        var ratioChange = targetRatio - this.currentRatio;
         this.ratioAtStart = this.currentRatio;
         this.value = targetRatio;
 
-        if (this.value > this.ratioAtStart)
+        if (0.0f < ratioChange && ratioChange < this.valueChangeThresholdForAnimation) 
         {
+            SetLocalScaleX(this.valueSurface, this.value);
+            SetLocalScaleX(this.transitionSurface, this.value);
+        }
+        else if (this.value > this.ratioAtStart)
+        {
+            this.transitionStartTime = Time.time;
             SetLocalScaleX(this.valueSurface, this.currentRatio);
             SetLocalScaleX(this.transitionSurface, this.value);
         }
         else
         {
+            this.transitionStartTime = Time.time;
             SetLocalScaleX(this.valueSurface, this.value);
             SetLocalScaleX(this.transitionSurface, this.currentRatio);
         }
