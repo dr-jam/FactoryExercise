@@ -25,14 +25,14 @@ The points distribution for the stages totals 70 points and can be found in the 
 
 ### Due Date and Submission Information
 
-The due date and submission information is on the official class communication channels.
+The due date and submission information are on the official class communication channels.
 
 ## Description of Provided Unity Project 
 
-### Scene and GameObjects in the Hierarcy
+### Scene and GameObjects in the Hierarchy
 
 * **Main Camera** is the main viewport into the lab.
-* **Laboratory** is the parent for the `GameObject`s that compose the testing facility's laboratory. Inside there are the sides of the room, test pedastals, a weapon on the right (camera-relative), and a shield on the left. 
+* **Laboratory** is the parent for the `GameObject`s that compose the testing facility's laboratory. Inside there are the sides of the room, test pedestals, a weapon on the right (camera-relative), and a shield on the left. 
   * **ShieldPedestal** contains a `ShieldPoint` where the shields (i.e. the test subjects) spawn and an instance of the `HealthBar` prefab.
   * **WeaponPedestal** holds the test weapon located at `WeaponPoint` which contains the `ProjectileSpawn` location for new `Projectile`s to spawn at.
 
@@ -46,7 +46,7 @@ Scripts:
 * **ShieldController.cs** contains the game logic for test shields. It is where the refreshing capabilities of the shield should be implemented. It contains references to the `ScrollingText` and `HeathBar` instances.
 * **EffectType.cs** holds the `enum` for the weapon projectile damage types.
 * **ManualFire.cs** implements firing a `Projectile` instance that moves from the `ProjectileSpawn` toward the `ShieldPoint` on `jump` input.
-* **ProjectileController.cs** is a component of the `Projectile` prefab that holds the physical parameters of the projectile and has information on the damage the projectile should do to a sheild.
+* **ProjectileController.cs** is a component of the `Projectile` prefab that holds the physical parameters of the projectile and has information on the damage the projectile should do to a shield.
 * **ProjectileMotion.cs** is a component of the `Projectile` prefab that controls its motion.
 * **HealthBarController.cs** controls the animation and behaviors of the `HealthBar`.
 * **ScrollingText.cs** partially controls the upward-scrolling damage values that appear when a `Projectile` collides with a shield.
@@ -68,7 +68,7 @@ The Aegis prototype shield mechanism is nearly complete. Your task is to complet
 
 ## Stage 2: Damage Engine
 
-Create a `DamageEngine` class that implements the following combat algorith:
+Create a `DamageEngine` class that implements the following combat algorithm:
 
 `damage = ProjectileDamage * (TypeFactor)`
 
@@ -90,10 +90,10 @@ Your task is to create factories that generate shields and projectiles via speci
 This task has the following objectives:
 1. Create a `ShieldFactory` and a `ProjectileFactory` using the factory design pattern.
 2. You need to create `ShieldSpec` and `ProjectileSpec` classes whose only role is to hold a specification to be used by your factory. These types of data classes typically only have properties and no methods.
-3. Your factories `Build` function should take a specification class as a parameter and should `Instantiate` a new `GameObject` based on the specification.
+3. Your factory's `Build` function should take a specification class as a parameter and should `Instantiate` a new `GameObject` based on the specification.
 4. Your factories should be able `GenerateRandomShield`s and `GenerateRandomProjectile`s with properties within the stated specification ranges.
 
-The automated factories in Aegis primarily build to external specifications. Specifications consist of the following values and ranges:
+The automated factories in Aegis are primarily built to external specifications. Specifications consist of the following values and ranges:
 
 Shield Specifications:
 * Capacity: 50 to 250
