@@ -34,8 +34,10 @@ public class HealthBarController : MonoBehaviour
         {
             SetLocalScaleX(this.valueSurface, this.value);
             SetLocalScaleX(this.transitionSurface, this.value);
+            return;
         }
-        else if (this.value > this.ratioAtStart)
+        
+        if (this.value > this.ratioAtStart)
         {
             this.transitionStartTime = Time.time;
             SetLocalScaleX(this.valueSurface, this.currentRatio);
