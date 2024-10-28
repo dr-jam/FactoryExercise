@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Aegis;
 
-public class ShieldController : MonoBehaviour   
+public class ShieldController : MonoBehaviour
 {
     [SerializeField] private float capacity = 100.0f;
     [SerializeField] private float rechargeRate = 1.0f;
@@ -14,10 +14,11 @@ public class ShieldController : MonoBehaviour
     [SerializeField] private GameObject healthBar;
     [SerializeField] private float currentCapacity = 0.0f;
     private HealthBarController healthBarController;
+    private float timeOfDamage = 0.0f;
 
     void Awake()
     {
-        this.currentCapacity = this.capacity;   
+        this.currentCapacity = this.capacity;
 
         if (!this.healthBar.TryGetComponent<HealthBarController>(out this.healthBarController))
         {
@@ -26,14 +27,15 @@ public class ShieldController : MonoBehaviour
 
         this.healthBarController.ChangeValue(this.currentCapacity / this.capacity);
 
-        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", this.effectTypeColors.GetColorByEffectType(this.type));     
+        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", this.effectTypeColors.GetColorByEffectType(this.type));
     }
 
     private void TakeDamage(float damage)
     {
         float oldCapacity = this.currentCapacity;
         this.currentCapacity -= damage;
-        
+        timeOfDamage = Time.time;
+
         if (currentCapacity < 0.0f)
         {
             currentCapacity = 0.0f;
@@ -48,8 +50,8 @@ public class ShieldController : MonoBehaviour
         }
 
         this.healthBarController.ChangeValue(currentCapacity / capacity);
-        
-        if(this.scrollingText && oldCapacity > 0)
+
+        if (this.scrollingText && oldCapacity > 0)
         {
             this.ShowScrollingText(damage.ToString());
         }
@@ -70,11 +72,30 @@ public class ShieldController : MonoBehaviour
         }
     }
 
+    private void RechargeShield()
+    {
+        if(timeOfDamage == 0.0f)
+        {
+            return;
+        }
+        if(timeOfDamage + rechargeDelay < Time.time)
+        {
+            if (this.currentCapacity < this.capacity)
+            {
+                this.currentCapacity += this.rechargeRate * Time.deltaTime;
+                this.currentCapacity = Mathf.Clamp(this.currentCapacity, 0.0f, this.capacity);
+                Debug.Log("ShieldController.Update" + this.rechargeRate * Time.deltaTime);  
+                this.healthBarController.ChangeValue(currentCapacity / capacity);
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         var capacityRatio = currentCapacity / capacity;
         this.transform.localScale = new Vector3(capacityRatio, capacityRatio, capacityRatio);
-        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", effectTypeColors.GetColorByEffectType(this.type));     
+        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", effectTypeColors.GetColorByEffectType(this.type));
+        this.RechargeShield();
     }
 }
