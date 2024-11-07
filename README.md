@@ -72,15 +72,15 @@ This class should be [autoloaded](https://docs.godotengine.org/en/stable/tutoria
 
 ## Stage 3: Factories and Specifications
 
-Your task is to create factories that generate shields and projectiles via specification classes. These generated items should be instantiated as `Node`s. Use shield and projectile placeholders in the Unity project as a guide for how they should interact with the scene. 
+Your task is to create factories that generate shields and projectiles via specification classes. These generated items should be instantiated as `Node`s. Use shield and projectile placeholders in the project as a guide for how they should interact with the scene. 
 
 ### Stage 3.1: Specific Construction
 
 This task has the following objectives:
 1. Create a `ShieldFactory` and a `ProjectileFactory` using the factory design pattern.
 2. You need to create `ShieldSpec` and `ProjectileSpec` classes whose only role is to hold a specification to be used by your factory. These types of data classes typically only have properties and no methods.
-3. Your factory's `Build` function should take a specification class as a parameter and should `Instantiate` a new `GameObject` based on the specification.
-4. Your factories should be able `GenerateRandomShield`s and `GenerateRandomProjectile`s with properties within the stated specification ranges.
+3. Your factory's `build` function should take a specification class as a parameter and should refresh the `Projectile`s and `Shield`s based on the specification.
+4. Your factories should be able `generate_random_shield`s and `generate_random_projectile`s with properties within the stated specification ranges.
 
 The automated factories in Aegis are primarily built to external specifications. Specifications consist of the following values and ranges:
 
