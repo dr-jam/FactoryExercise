@@ -1,9 +1,5 @@
 # ECS189L Programming Exercise 4: The Factory Pattern
 
-# TODO #
-Change Capacity to either MaxCapacity or CurrentCapacity.  
-Update coding style
-
 ## Description
 
 The goals of this programming exercise are:
@@ -27,44 +23,37 @@ The points distribution for the stages totals 70 points and can be found in the 
 
 The due date and submission information are on the official class communication channels.
 
-## Description of Provided Unity Project 
+## Description of Provided Godot Project 
 
 ### Scene and GameObjects in the Hierarchy
 
 * **Main Camera** is the main viewport into the lab.
-* **Laboratory** is the parent for the `GameObject`s that compose the testing facility's laboratory. Inside there are the sides of the room, test pedestals, a weapon on the right (camera-relative), and a shield on the left. 
-  * **ShieldPedestal** contains a `ShieldPoint` where the shields (i.e. the test subjects) spawn and an instance of the `HealthBar` prefab.
-  * **WeaponPedestal** holds the test weapon located at `WeaponPoint` which contains the `ProjectileSpawn` location for new `Projectile`s to spawn at.
+* **Laboratory** is the root scene that composes the testing facility's laboratory. Inside there are the sides of the room, test pedestals, a weapon, and a shield. 
+  * **ShieldAparatus** contains a `ShieldGenerator` where the shields (i.e. the test subjects) spawn.
+  * **WeaponAparatus** holds the test weapon that contains the `ProjectileSpawn` location for new `Projectile`s to spawn at.
 
 ### Assets and Scripts
 
-Prefabs of note:  
-* **HealthBar** is a prefab that implements the dynamic health bar shown above the shield.
+Scenes of note:  
+* **DamageIndicator** is a prefab that implements the dynamic health bar shown above the shield.
 * **Projectile** is a prefab for the projectiles shot by the test weapon.
 
 Scripts: 
-* **ShieldController.cs** contains the game logic for test shields. It is where the refreshing capabilities of the shield should be implemented. It contains references to the `ScrollingText` and `HeathBar` instances.
-* **EffectType.cs** holds the `enum` for the weapon projectile damage types.
-* **ManualFire.cs** implements firing a `Projectile` instance that moves from the `ProjectileSpawn` toward the `ShieldPoint` on `jump` input.
-* **ProjectileController.cs** is a component of the `Projectile` prefab that holds the physical parameters of the projectile and has information on the damage the projectile should do to a shield.
-* **ProjectileMotion.cs** is a component of the `Projectile` prefab that controls its motion.
-* **HealthBarController.cs** controls the animation and behaviors of the `HealthBar`.
-* **ScrollingText.cs** partially controls the upward-scrolling damage values that appear when a `Projectile` collides with a shield.
-
-Assets used by the project that you need not manipulate but are otherwise interesting:
-* **ScrollingText** prefab and animation controller.
-* **TextScrollUp** animation.
-* **Consequences** is the font used for the damage display text.
+* **Shield.cs** contains the game logic for test `Shield`s. It is where the refreshing capabilities of the shield should be implemented. It contains references to the `DamageIndicator` scene.
+* **Effects** holds the `enum` for the projectile and shield types.
+* **Laboratory** implements firing a `Projectile` instance that moves from the `ProjectileSpawn` toward the `ShieldAparatus` on `ui_accept` input. Your factory logic could go here.
+* **Projectile** holds the physical parameters of the projectile and has information on the damage the projectile should do to a shield. It also controls the motion of the `Projectile`
+* **DamageIndicator** partially controls the upward-scrolling damage values that appear when a `Projectile` collides with a `Shield`.
 
 ## Stage 1: Shields Online
 
 The Aegis prototype shield mechanism is nearly complete. Your task is to complete the shield's functionality by adding a recharging mechanism which consists of the following:
-* Use the `RechargeRate` and `RechargeDelay` properties of the `ShieldController` class to enable:
-  * After the shield has taken damage or is not at maximum capacity, it enters a recharge delay period lasting `RechargeDelay` seconds.
-  * After the recharge delay period, the shield begins to recharge at `RechargeRate` capacity points per second.
+* Use the `recharge_rate` and `rechare_delay` properties of the `Shield` class to enable:
+  * After the shield has taken damage or is not at maximum capacity, it enters a recharge delay period lasting `recharge_delay` seconds.
+  * After the recharge delay period, the shield begins to recharge at `recharge_rate` capacity points per second.
   * If the shield is damaged before it is fully recharged, the shield stops recharging and enters another recharge delay period.
-  * Shields cannot recharge greater than their `Capacity` value.
-  * Shield `Capacity` can never be negative.
+  * Shields cannot recharge greater than their `max_capacity` value.
+  * Shield `current_level` can never be negative.
 
 ## Stage 2: Damage Engine
 
@@ -83,7 +72,7 @@ This class does not need to be a `MonoBehavior` or `ScriptableObject`. It doesn'
 
 ## Stage 3: Factories and Specifications
 
-Your task is to create factories that generate shields and projectiles via specification classes. These generated items should be instantiated as `GameObjects`. Use shield and projectile placeholders in the Unity project as a guide for how they should interact with the scene. 
+Your task is to create factories that generate shields and projectiles via specification classes. These generated items should be instantiated as `Node`s. Use shield and projectile placeholders in the Unity project as a guide for how they should interact with the scene. 
 
 ### Stage 3.1: Specific Construction
 
@@ -110,9 +99,9 @@ Projectile Specifications:
 
 Unfortunately, your factories are also limited in the quality of shields and projectiles they can produce. Shields are limited to a power rating of 300, while projectiles are limited to a rating of 100. The following functions can determine ratings:
 
-`ShieldRating = Capacity + (5 - RechargeDelay) * 5 + RechargeRate * (RechargeRate / 2)`
+`shield_rating = max_apacity + (5.0 - recharge_delay) * 5.0 + recharge_rate * (RechargeRate / 2.0)`
 
-`ProjectileRating = Damage * 2 + (3 - ChargeTime)^4`
+`projective_rating = damage * 2.0 + (3.0 - charge_time) ** 4.0`
 
 Your factories should not produce shields or projectiles with power ratings higher than the stated limits. If your factory receives a specification with a power rating over the stated limits, your factory should scale down the specification to be within the rating limit. How your factory scales down the specifications is your design choice; you could increase delay or change times, lower all properties by a percentage, or even randomly generate an entirely new shield.
 
