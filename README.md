@@ -25,7 +25,7 @@ The due date and submission information are on the official class communication 
 
 ## Description of Provided Godot Project 
 
-### Scene and GameObjects in the Hierarchy
+### Scene and Nodes
 
 * **Main Camera** is the main viewport into the lab.
 * **Laboratory** is the root scene that composes the testing facility's laboratory. Inside there are the sides of the room, test pedestals, a weapon, and a shield. 
@@ -68,7 +68,7 @@ Create a `DamageEngine` class that implements the following combat algorithm:
 |                     |  Energy |      2      |    1   |   0.5  |
 |                     |  Arcane |     0.5     |    2   |    1   |
 
-This class does not need to be a `MonoBehavior` or `ScriptableObject`. It doesn't necessarily have to be a class. It does need to provide a static function that takes the parameters of a shield and the parameters of a projectile and returns a damage value as denoted by the combat algorithm.
+This class should be [autoloaded](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html) via the Project Settings. This class does not need to be explicitly linked to a `Node`. It doesn't necessarily have to be a class. It does need to provide a static function that takes the parameters of a shield and the parameters of a projectile and returns a damage value as denoted by the combat algorithm. 
 
 ## Stage 3: Factories and Specifications
 
