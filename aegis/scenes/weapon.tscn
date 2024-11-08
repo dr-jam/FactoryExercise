@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqlmmx43ovy2n"]
+
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_l3jwl"]
+[ext_resource type="PackedScene" uid="uid://c4dboael2u2cu" path="res://scenes/projectile.tscn" id="1_wl55w"]
+
+[node name="Weapon" type="StaticBody3D"]
+script = ExtResource("1_l3jwl")
+projectile = ExtResource("1_wl55w")
+
+[node name="Stand" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+radius = 0.2
+height = 2.5
+
+[node name="Barrel" type="CSGCylinder3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 2, 0)
+radius = 0.2
+
+[node name="ProjectileSpawn" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2, 0)
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.398002, -0.183609, 0.0606546)
+polygon = PackedVector2Array(-0.571917, 2.30258, 0.413924, 2.34485, 0.464128, 2.02882, -0.270154, 2.00933, -0.204179, 0.43837, -0.601427, 0.477926, -0.643658, 1.99546, -1.30008, 2.01852, -1.30957, 2.34551)

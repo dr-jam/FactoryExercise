@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://btdn26dxukld4"]
+
+[ext_resource type="PackedScene" uid="uid://blfuv64ebh6b1" path="res://scenes/laboratory.tscn" id="1_grw6j"]
+
+[node name="World?" type="Node3D"]
+
+[node name="Laboratory" parent="." instance=ExtResource("1_grw6j")]

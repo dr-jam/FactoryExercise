@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EffectColor" load_steps=2 format=3 uid="uid://4hfumk5tnd1y"]
+
+[ext_resource type="Script" path="res://scripts/effect_color.gd" id="1_gonkk"]
+
+[resource]
+script = ExtResource("1_gonkk")
+type = 2
+color = Color(0.842496, 0.58055, 1, 1)

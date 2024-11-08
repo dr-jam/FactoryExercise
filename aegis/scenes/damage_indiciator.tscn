@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://btn3t336rijtm"]
+
+[ext_resource type="Script" path="res://scripts/damage_indiciator.gd" id="1_52iek"]
+
+[sub_resource type="Curve" id="Curve_ndtc4"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(0.548638, 0.831442), 0.951268, 0.951268, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="DamageIndiciator" type="Label3D" node_paths=PackedStringArray("end_location")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+modulate = Color(0.32549, 1, 0, 1)
+text = "999
+"
+script = ExtResource("1_52iek")
+duration = 1.0
+end_location = NodePath("EndLocation")
+movement_curve = SubResource("Curve_ndtc4")
+
+[node name="EndLocation" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1, 0)
