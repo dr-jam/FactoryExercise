@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://g7qyvfuhihty"]
+[gd_scene load_steps=51 format=3 uid="uid://g7qyvfuhihty"]
 
 [ext_resource type="AudioStream" uid="uid://b2fl5eu1xg244" path="res://assets/audio/physical launch.wav" id="1_8xprt"]
 [ext_resource type="Script" path="res://scripts/sounds.gd" id="1_pwo2x"]
@@ -30,8 +30,9 @@
 [ext_resource type="AudioStream" uid="uid://5835lr36uw8" path="res://assets/audio/initiated.wav" id="23_tbyvp"]
 [ext_resource type="AudioStream" uid="uid://c50ygk4m2im3h" path="res://assets/audio/damaged.wav" id="24_2rm1b"]
 [ext_resource type="AudioStream" uid="uid://b5dwqqwcdcktu" path="res://assets/audio/sorry.wav" id="25_ak2me"]
-[ext_resource type="AudioStream" uid="uid://bo3jbl2ba3viq" path="res://assets/audio/authorising.wav" id="26_wxj8h"]
+[ext_resource type="AudioStream" uid="uid://cub4pfn052kug" path="res://assets/audio/researching.wav" id="31_mechu"]
 [ext_resource type="AudioStream" uid="uid://d0247g3jgup8y" path="res://assets/audio/destroyed.wav" id="32_5p27q"]
+[ext_resource type="AudioStream" uid="uid://bos7wfev85fnx" path="res://assets/audio/system_failure_imminent.wav" id="32_in270"]
 [ext_resource type="AudioStream" uid="uid://cud8mf8bhxfpw" path="res://assets/audio/disabled.wav" id="33_g44y3"]
 [ext_resource type="AudioStream" uid="uid://cn083vy7xeyqy" path="res://assets/audio/target_destroyed.wav" id="34_itdv3"]
 [ext_resource type="AudioStream" uid="uid://cboor651cxdip" path="res://assets/audio/down.wav" id="35_kxlry"]
@@ -89,11 +90,12 @@ stream_20/stream = ExtResource("17_87qf2")
 stream_21/stream = ExtResource("18_0nl78")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_v3jkg"]
-streams_count = 4
+streams_count = 5
 stream_0/stream = ExtResource("24_2rm1b")
 stream_1/stream = ExtResource("25_ak2me")
 stream_2/stream = ExtResource("5_cg0sx")
-stream_3/stream = ExtResource("26_wxj8h")
+stream_3/stream = ExtResource("31_mechu")
+stream_4/stream = ExtResource("32_in270")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_c3o4w"]
 streams_count = 12
@@ -121,15 +123,19 @@ max_polyphony = 30
 
 [node name="Damage" type="AudioStreamPlayer3D" parent="Environment"]
 stream = SubResource("AudioStreamRandomizer_tdte6")
+max_polyphony = 10
 
 [node name="KeneticFire" type="AudioStreamPlayer3D" parent="Environment"]
 stream = SubResource("AudioStreamRandomizer_ej1gs")
+max_polyphony = 10
 
 [node name="EnergyFire" type="AudioStreamPlayer3D" parent="Environment"]
 stream = SubResource("AudioStreamRandomizer_t8rak")
+max_polyphony = 10
 
 [node name="ArcaneFire" type="AudioStreamPlayer3D" parent="Environment"]
 stream = ExtResource("4_w23jr")
+max_polyphony = 10
 
 [node name="SpotlightOn" type="AudioStreamPlayer3D" parent="Environment"]
 stream = ExtResource("4_qi1fr")
@@ -137,14 +143,17 @@ max_polyphony = 2
 
 [node name="ShieldDown" type="AudioStreamPlayer3D" parent="Environment"]
 stream = SubResource("AudioStreamRandomizer_n8vct")
+max_polyphony = 10
 
 [node name="SadOS" type="Node" parent="."]
 
 [node name="Fire" type="AudioStreamPlayer3D" parent="SadOS"]
 stream = SubResource("AudioStreamRandomizer_uhaca")
+max_polyphony = 10
 
 [node name="Damage" type="AudioStreamPlayer3D" parent="SadOS"]
 stream = SubResource("AudioStreamRandomizer_v3jkg")
+max_polyphony = 10
 
 [node name="ShieldDown" type="AudioStreamPlayer3D" parent="SadOS"]
 stream = SubResource("AudioStreamRandomizer_c3o4w")
