@@ -1,4 +1,4 @@
-# ECS189L Programming Exercise 4: The Factory Pattern
+# ECS189L Programming Exercise: The Factory Pattern
 
 ## Description
 
