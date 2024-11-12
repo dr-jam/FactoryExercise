@@ -63,8 +63,8 @@ Create a `DamageEngine` class that implements the following combat algorithm:
 
 | Damage Type Factors |         | Shield Type |        |        |
 |:-------------------:|:-------:|:-----------:|:------:|--------|
-|                     |         |   Kenetic   | Energy | Arcane |
-|  **ProjectileType** | Kenetic |      1      |   0.5  |    2   |
+|                     |         |   Kinetic   | Energy | Arcane |
+|  **ProjectileType** | Kinetic |      1      |   0.5  |    2   |
 |                     |  Energy |      2      |    1   |   0.5  |
 |                     |  Arcane |     0.5     |    2   |    1   |
 
