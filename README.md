@@ -99,7 +99,7 @@ Projectile Specifications:
 
 Unfortunately, your factories are also limited in the quality of shields and projectiles they can produce. Shields are limited to a power rating of 300, while projectiles are limited to a rating of 100. The following functions can determine ratings:
 
-`shield_rating = max_capacity + (5.0 - recharge_delay) * 5.0 + recharge_rate * (RechargeRate / 2.0)`
+`shield_rating = max_capacity + (5.0 - recharge_delay) * 5.0 + recharge_rate * (recharge_rate / 2.0)`
 
 `projectile_rating = damage * 2.0 + (3.0 - charge_time) ** 4.0`
 
