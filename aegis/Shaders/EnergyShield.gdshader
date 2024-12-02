@@ -63,21 +63,21 @@ Uniform: float _impact_frequency
 - Description: Controls the speed at which the ripple waves oscillate.
 - Effect: Higher values make the ripples oscillate faster, creating more waves within a given distance.
 */
-uniform float _impact_frequency = 10.0;
+uniform float _impact_frequency = 7.5;
 
 /**
 Uniform: float _impact_density
 - Description: Determines the spatial frequency of the ripples (how close the waves are to each other).
 - Effect: Higher values result in more ripples appearing within a certain distance from the impact origin.
 */
-uniform float _impact_density = 2.0;
+uniform float _impact_density = 4.0;
 
 /**
 Uniform: float _impact_amplitude
 - Description: The height or strength of the ripple displacement.
 - Effect: Higher values increase the intensity of the ripple, causing greater displacement of the vertices.
 */
-uniform float _impact_amplitude = 5.0;
+uniform float _impact_amplitude = 25.0;
 
 /**
 Uniform: float _impact_anim
@@ -92,14 +92,14 @@ Uniform: float _impact_speed
 - Description: Controls the rate at which the ripple expands outward from the impact origin.
 - Effect: Higher values make the ripple expand faster across the shield.
 */
-uniform float _impact_speed = 5.0;
+uniform float _impact_speed = 2.0;
 
 /**
 Uniform: float _impact_width
 - Description: Determines the width of the ripple front (the area over which the ripple effect transitions from full effect to no effect).
 - Effect: Smaller values create a sharper ripple front, while larger values result in a smoother transition.
 */
-uniform float _impact_width = 0.1;
+uniform float _impact_width = 0.5;
 /**
 Uniform: float _impact_anim_max
 - Description: Determines the total duration of the impact animation.
@@ -146,6 +146,7 @@ uniform float _shield_pulse_radius = 1.0;
                           Idle Pulse Parameters
 --------------------------------------------------------------*/
 
+group_uniforms Idle_Pulse;
 /**
  ** Controls how fast the idle pulse cycles.
  */

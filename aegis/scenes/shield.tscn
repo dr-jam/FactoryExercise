@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bflpdqq16ov35"]
+[gd_scene load_steps=11 format=4 uid="uid://bflpdqq16ov35"]
 
 [ext_resource type="Script" path="res://scripts/shield.gd" id="1_qdp32"]
 [ext_resource type="Shader" path="res://Shaders/EnergyShield.gdshader" id="1_rnt3n"]
@@ -8,26 +8,55 @@
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.272085, 0.28), -1.02309, -1.02309, 0, 0, Vector2(1, 0), -0.212084, 0.0, 0, 0]
 point_count = 3
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_awysm"]
+render_priority = 0
+shader = ExtResource("1_rnt3n")
+shader_parameter/_shield_color = Color(0, 0, 1, 1)
+shader_parameter/_shield_color_brightness = 1.1
+shader_parameter/_shield_intensity = 0.6
+shader_parameter/_shield_size = 0.15
+shader_parameter/_rotation = Vector3(0.1, 0, 0)
+shader_parameter/_impact_origin = Vector3(1, 0, 0)
+shader_parameter/_impact_frequency = 7.5
+shader_parameter/_impact_density = 4.0
+shader_parameter/_impact_amplitude = 25.0
+shader_parameter/_impact_anim = 0.0
+shader_parameter/_impact_speed = 2.0
+shader_parameter/_impact_width = 0.5
+shader_parameter/_impact_anim_max = 3.0
+shader_parameter/_impact_fade_duration = 0.5
+shader_parameter/_shield_pulse_frequency = 1.0
+shader_parameter/_shield_pulse_density = 1.0
+shader_parameter/_shield_pulse_amplitude = 1.0
+shader_parameter/_shield_pulse_blend = 1.0
+shader_parameter/_shield_pulse_radius = 1.0
+shader_parameter/_idle_frequency = 2.0
+shader_parameter/_idle_amplitude = 0.05
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m6gf7"]
 render_priority = 0
 shader = ExtResource("1_rnt3n")
 shader_parameter/_shield_color = Color(0, 1, 0, 1)
 shader_parameter/_shield_color_brightness = 1.0
 shader_parameter/_shield_intensity = 0.5
-shader_parameter/_rotation = Vector3(0.1, 0, 0)
 shader_parameter/_shield_size = 0.0
+shader_parameter/_rotation = Vector3(0.1, 0, 0)
+shader_parameter/_impact_origin = Vector3(1, 0, 0)
+shader_parameter/_impact_frequency = 5.0
+shader_parameter/_impact_density = 5.0
+shader_parameter/_impact_amplitude = 6.0
+shader_parameter/_impact_anim = 0.0
+shader_parameter/_impact_speed = 5.0
+shader_parameter/_impact_width = 0.1
+shader_parameter/_impact_anim_max = 3.0
+shader_parameter/_impact_fade_duration = 0.5
 shader_parameter/_shield_pulse_frequency = 1.0
 shader_parameter/_shield_pulse_density = 1.0
 shader_parameter/_shield_pulse_amplitude = 1.0
 shader_parameter/_shield_pulse_blend = 1.0
 shader_parameter/_shield_pulse_radius = 1.0
-shader_parameter/_impact_origin = Vector3(1, 0, 0)
-shader_parameter/_impact_frequency = 5.0
-shader_parameter/_impact_density = 5.0
-shader_parameter/_impact_amplitude = 6.0
-shader_parameter/_impact_blend = 0.0
-shader_parameter/_impact_radius = 1.1
-shader_parameter/_impact_anim = 0.0
+shader_parameter/_idle_frequency = 2.0
+shader_parameter/_idle_amplitude = 0.05
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_0s76k"]
 _surfaces = [{
@@ -46,11 +75,11 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="Curve" id="Curve_gm7xi"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_aalff"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0), 0.0, 1.0, 0, 1, Vector2(1, 1), 1.0, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb5xj"]
@@ -78,6 +107,7 @@ smooth_faces = false
 
 [node name="ShieldMesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+material_override = SubResource("ShaderMaterial_awysm")
 mesh = SubResource("ArrayMesh_0s76k")
 skeleton = NodePath("../..")
 script = ExtResource("2_l5vso")
