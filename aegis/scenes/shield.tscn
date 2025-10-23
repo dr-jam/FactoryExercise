@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=4 uid="uid://bflpdqq16ov35"]
 
-[ext_resource type="Script" path="res://scripts/shield.gd" id="1_qdp32"]
-[ext_resource type="Shader" path="res://Shaders/EnergyShield.gdshader" id="1_rnt3n"]
-[ext_resource type="Script" path="res://scripts/shield_mesh.gd" id="2_l5vso"]
+[ext_resource type="Script" uid="uid://bwr81tin4wkxv" path="res://scripts/shield.gd" id="1_qdp32"]
+[ext_resource type="Shader" uid="uid://71b5gxj2oof7" path="res://Shaders/EnergyShield.gdshader" id="1_rnt3n"]
+[ext_resource type="Script" uid="uid://duanj07mnvq6a" path="res://scripts/shield_mesh.gd" id="2_l5vso"]
 
 [sub_resource type="Curve" id="Curve_ye04a"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.272085, 0.28), -1.02309, -1.02309, 0, 0, Vector2(1, 0), -0.212084, 0.0, 0, 0]
@@ -57,7 +57,6 @@ point_count = 2
 radius = 1.0
 
 [node name="Shield" type="RigidBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 collision_layer = 2
 collision_mask = 2
 freeze = true

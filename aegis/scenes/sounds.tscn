@@ -1,7 +1,7 @@
 [gd_scene load_steps=51 format=3 uid="uid://g7qyvfuhihty"]
 
 [ext_resource type="AudioStream" uid="uid://b2fl5eu1xg244" path="res://assets/audio/physical launch.wav" id="1_8xprt"]
-[ext_resource type="Script" path="res://scripts/sounds.gd" id="1_pwo2x"]
+[ext_resource type="Script" uid="uid://csplsj1bfkipd" path="res://scripts/sounds.gd" id="1_pwo2x"]
 [ext_resource type="AudioStream" uid="uid://c1xce4pha20j0" path="res://assets/audio/sfx/394672__svoxx__rail1a.ogg" id="3_0y4gl"]
 [ext_resource type="AudioStream" uid="uid://5tago2dwwqru" path="res://assets/audio/blast.wav" id="3_yrn24"]
 [ext_resource type="AudioStream" uid="uid://b8xi08jirh7vd" path="res://assets/audio/sfx/energy launch.wav" id="4_3hg2l"]

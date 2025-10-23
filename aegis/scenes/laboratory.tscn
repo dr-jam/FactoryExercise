@@ -13,6 +13,7 @@ script = ExtResource("1_kj31b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 
 [node name="ShieldApparatus" parent="." instance=ExtResource("2_gtrca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)
 type = 2
 
 [node name="Surveillance" type="Node3D" parent="."]
