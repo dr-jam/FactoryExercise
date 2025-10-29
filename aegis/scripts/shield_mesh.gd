@@ -22,4 +22,4 @@ func set_shield_color(color:Color) -> void:
 
 
 func set_shield_color_by_type(type:Effects.Type) -> void:
-	set_shield_color(effects.get_type_color(_shield.type))
+	set_shield_color(effects.get_type_color(type))
