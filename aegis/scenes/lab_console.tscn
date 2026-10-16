@@ -1,0 +1,286 @@
+[gd_scene format=3 uid="uid://br5i7xur6wu7u"]
+
+[ext_resource type="Script" uid="uid://ckoe86hvjc7vo" path="res://scripts/lab_console.gd" id="1_console"]
+
+[sub_resource type="StyleBoxFlat" id="ConsolePanel"]
+bg_color = Color(0.91, 0.9, 0.85, 0.97)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.12, 0.15, 0.16, 1)
+shadow_color = Color(0, 0, 0, 0.28)
+shadow_size = 8
+
+[sub_resource type="StyleBoxFlat" id="SelectorPanel"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+bg_color = Color(0.98, 0.98, 0.94, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.3, 0.31, 1)
+
+[sub_resource type="StyleBoxFlat" id="ActionHover"]
+bg_color = Color(1, 0.76, 0.2, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12, 0.15, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="BadgePanel"]
+bg_color = Color(0.96, 0.65, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12, 0.15, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="StatusPanel"]
+bg_color = Color(0.83, 0.84, 0.8, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.25, 0.3, 0.31, 1)
+
+[sub_resource type="StyleBoxFlat" id="ActionNormal"]
+bg_color = Color(0.96, 0.65, 0.08, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12, 0.15, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="ActionPressed"]
+bg_color = Color(0.78, 0.49, 0.03, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12, 0.15, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="SecondaryNormal"]
+bg_color = Color(0.22, 0.55, 0.61, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12, 0.15, 0.16, 1)
+
+[sub_resource type="StyleBoxFlat" id="SecondaryHover"]
+bg_color = Color(0.3, 0.68, 0.72, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.12, 0.15, 0.16, 1)
+
+[node name="LabConsole" type="CanvasLayer" unique_id=220286526]
+script = ExtResource("1_console")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=1331080096]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 410.0
+offset_bottom = 408.0
+theme_override_styles/panel = SubResource("ConsolePanel")
+
+[node name="Margin" type="MarginContainer" parent="Panel" unique_id=2093666680]
+layout_mode = 2
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 13
+theme_override_constants/margin_bottom = 12
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Margin" unique_id=1850129848]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Header" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=1873264684]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ToggleButton" type="Button" parent="Panel/Margin/VBox/Header" unique_id=498675563]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(34, 34)
+layout_mode = 2
+tooltip_text = "Restore console"
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_styles/normal = SubResource("SelectorPanel")
+theme_override_styles/hover = SubResource("ActionHover")
+text = "+"
+
+[node name="BayBadge" type="PanelContainer" parent="Panel/Margin/VBox/Header" unique_id=1016987973]
+custom_minimum_size = Vector2(48, 46)
+layout_mode = 2
+theme_override_styles/panel = SubResource("BadgePanel")
+
+[node name="BayNumber" type="Label" parent="Panel/Margin/VBox/Header/BayBadge" unique_id=192746493]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_font_sizes/font_size = 20
+text = "03"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HeaderText" type="VBoxContainer" parent="Panel/Margin/VBox/Header" unique_id=1017420720]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="Title" type="Label" parent="Panel/Margin/VBox/Header/HeaderText" unique_id=1042880248]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_font_sizes/font_size = 17
+text = "AEGIS TEST FACILITY"
+
+[node name="Subtitle" type="Label" parent="Panel/Margin/VBox/Header/HeaderText" unique_id=987026364]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.3, 0.31, 1)
+theme_override_font_sizes/font_size = 10
+text = "LABORATORY CONTROL / AUTHORIZED USE"
+
+[node name="TopStripe" type="ColorRect" parent="Panel/Margin/VBox" unique_id=448790920]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(0.96, 0.65, 0.08, 1)
+
+[node name="SectionOne" type="Label" parent="Panel/Margin/VBox" unique_id=1353838687]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.55, 0.61, 1)
+theme_override_font_sizes/font_size = 11
+text = "01  /  LIVE TEST STATUS"
+
+[node name="StatusCard" type="PanelContainer" parent="Panel/Margin/VBox" unique_id=975851321]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StatusPanel")
+
+[node name="StatusMargin" type="MarginContainer" parent="Panel/Margin/VBox/StatusCard" unique_id=2127613779]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 5
+
+[node name="StatusStack" type="VBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin" unique_id=549221070]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="ShieldStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=1710040319]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+text = "SHIELD  /  awaiting implementation"
+
+[node name="ProjectileStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=666963830]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+text = "PROJECTILE  /  awaiting factory integration"
+
+[node name="TestStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=1045682139]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+text = "TEST SEQUENCE  /  idle"
+
+[node name="EvaluationStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=778112]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+text = "POLICY REVIEW  /  not run"
+
+[node name="SectionTwo" type="Label" parent="Panel/Margin/VBox" unique_id=860545950]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.55, 0.61, 1)
+theme_override_font_sizes/font_size = 11
+text = "02  /  SELECT PROJECTILE"
+
+[node name="ProjectileSelector" type="OptionButton" parent="Panel/Margin/VBox" unique_id=238270563]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+tooltip_text = "Starter demonstration: random effect type and 5-20 damage. Same as F."
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_styles/normal = SubResource("SelectorPanel")
+selected = 0
+item_count = 1
+popup/item_0/text = "Random test projectile"
+popup/item_0/id = 0
+
+[node name="Controls" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=53310214]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="FireButton" type="Button" parent="Panel/Margin/VBox/Controls" unique_id=1734308386]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_styles/normal = SubResource("ActionNormal")
+theme_override_styles/pressed = SubResource("ActionPressed")
+theme_override_styles/hover = SubResource("ActionHover")
+text = "FIRE SELECTED"
+
+[node name="RunButton" type="Button" parent="Panel/Margin/VBox/Controls" unique_id=253321477]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.98, 0.98, 0.94, 1)
+theme_override_styles/normal = SubResource("SecondaryNormal")
+theme_override_styles/pressed = SubResource("ActionPressed")
+theme_override_styles/hover = SubResource("SecondaryHover")
+text = "RUN SCHEDULE"
+
+[node name="CancelButton" type="Button" parent="Panel/Margin/VBox/Controls" unique_id=2055167757]
+custom_minimum_size = Vector2(0, 34)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_styles/normal = SubResource("SelectorPanel")
+theme_override_styles/hover = SubResource("StatusPanel")
+text = "CANCEL"
+
+[node name="SectionThree" type="Label" parent="Panel/Margin/VBox" unique_id=1625592473]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22, 0.55, 0.61, 1)
+theme_override_font_sizes/font_size = 11
+text = "03  /  ANALYSIS & DIAGNOSTICS"
+
+[node name="AssessmentControls" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=1555675158]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="EvaluateButton" type="Button" parent="Panel/Margin/VBox/AssessmentControls" unique_id=2013373837]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.98, 0.98, 0.94, 1)
+theme_override_styles/normal = SubResource("SecondaryNormal")
+theme_override_styles/hover = SubResource("SecondaryHover")
+text = "COMPARE POLICIES"
+
+[node name="DebugButton" type="Button" parent="Panel/Margin/VBox/AssessmentControls" unique_id=79134412]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_styles/normal = SubResource("ActionNormal")
+theme_override_styles/hover = SubResource("ActionHover")
+text = "DEBUG CASE"
+
+[node name="Footer" type="Label" parent="Panel/Margin/VBox" unique_id=327002162]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25, 0.3, 0.31, 1)
+theme_override_font_sizes/font_size = 9
+text = "NOTICE: TESTS MAY PRODUCE UNEXPECTED RESULTS."
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Panel/Margin/VBox/Header/ToggleButton" to="." method="_on_toggle_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/Controls/FireButton" to="." method="_on_fire_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/Controls/RunButton" to="." method="_on_run_schedule_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/Controls/CancelButton" to="." method="_on_cancel_schedule_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/AssessmentControls/EvaluateButton" to="." method="_on_evaluate_policies_pressed"]
+[connection signal="pressed" from="Panel/Margin/VBox/AssessmentControls/DebugButton" to="." method="_on_debugging_scenario_pressed"]

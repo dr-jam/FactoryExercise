@@ -11,6 +11,7 @@ extends Node3D
 
 @onready var shield:Shield = $ShieldApparatus
 @onready var weapon:Weapon = $WeaponAparatus
+@onready var console:LabConsole = $LabConsole
 
 @onready var north_light:StaggerLight = $Surveillance/NorthSpotLight
 @onready var east_light:StaggerLight = $Surveillance/EastSpotLight
@@ -26,14 +27,29 @@ func _ready():
 	LabLog.header("INITIALIZING LABORATORY")
 	_detect_cameras()
 	_start_lights()
+	console.fire_requested.connect(_on_console_fire_requested)
 	LabLog.info("Laboratory initialization complete.")
 	LabLog.separator()
 
 
 func _process(_delta):
-	if(Input.is_action_just_pressed("ui_accept")):
-		LabLog.input("Operator provided fire command.")
-		weapon.fire(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
+	if(Input.is_action_just_pressed("fire_test_shot")):
+		_fire_random_test_shot()
+
+
+## Starter wiring for the single default option. Replace this handler with
+## specification lookup and factory construction when adding your own options.
+func _on_console_fire_requested(projectile_index: int) -> void:
+	if projectile_index != 0:
+		LabLog.error("No starter projectile is configured for selection %d." % projectile_index)
+		return
+	_fire_random_test_shot()
+
+
+## Shared by F and the console; this ad hoc demonstration is not a seeded test.
+func _fire_random_test_shot() -> void:
+	LabLog.input("Operator provided fire command.")
+	weapon.fire(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
 
 func _detect_cameras():
 	LabLog.info("Detecting experimental surveillience aparatus.")
