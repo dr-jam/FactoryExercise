@@ -17,10 +17,18 @@ extends Node3D
 @onready var south_light:StaggerLight = $Surveillance/SouthSpotLight
 @onready var west_light:StaggerLight = $Surveillance/WestSpotLight
 
+@onready var _surveillance_system:Node = $Surveillance
+
+var _cameras:Array[Camera3D]= []
 
 func _process(_delta):
 	if(Input.is_action_just_pressed("ui_accept")):
 		weapon.fire(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
+
+func _detect_cameras():
+	for child in _surveillance_system.get_children():
+		if child is Camera3D:
+			_cameras.push_back(child)
 
 func _start_lights():
 	north_light.start_delay()
