@@ -187,26 +187,39 @@ The optional Evaluation and Iteration pathway asks you to compare and revise pol
 
 *[Still Alive](https://www.youtube.com/watch?v=VuLktUzq23c), Portal, 2007, Jonathan Coulton*   
 
-Create a `TestFactory` that builds and tests equipment using your Stage 3 factories. Use the supplied `ShieldSpec`, `ProjectileSpec`, and `TestSchedule`. Each test must:
+Create a `TestFactory` that assembles a repeatable test using your Stage 3 factories. Use the supplied `ShieldSpec`, `ProjectileSpec`, and `TestSchedule`.
 
-* create one `ShieldSpec` and build its shield
-* create between 5 and 10 `ProjectileSpec` values and build their projectiles
-* use the supplied `TestSchedule` to launch the projectiles in order, waiting for each projectile's `charge_time` before launching the next
-* add the shield and schedule to the scene and run the test
-* report whether the test passed, and identify any failed checks
+Each test must:
 
-Use a known seed with a `RandomNumberGenerator` and record the seed, specs, expected results, and observed results.
+1. Use a saved seed with a `RandomNumberGenerator` to generate one shield specification and between 5 and 10 projectile specifications.
+2. Build the equipment through your Stage 3 factories, including their rating adjustments.
+3. Add the shield and schedule to the scene. Use `TestSchedule` to launch the projectiles in order, waiting each projectile's `charge_time` before launching the next.
+4. Check the shield capacity lost at each impact against the expected loss.
+5. Wait for all projectiles to resolve.
+6. Report huge failure or great success!
 
-Wait for the projectiles to resolve before evaluating the outcome. The scheduler's `schedule_finished` signal means all launches have been issued; projectiles may still be in flight.
 
-Your checks must cover:
+### Checking an impact
 
-* damage calculated using the Stage 2 table;
-* shield levels staying between zero and maximum capacity;
-* recharge timing and behavior from Stage 1; and
-* factory products meeting the property ranges and rating limits.
+Use the built projectile's damage and type and the built shield's type to calculate expected damage from the Stage 2 table. Use the actual equipment values after factory adjustments, not the original requests.
 
-Report a pass only when the observed results match the expected results and all applicable checks pass. Submit at least one failing run and one passing run.
+For each impact, capture the shield level immediately before and immediately after damage is applied:
+
+```text
+expected_damage = projectile_damage * type_factor
+expected_loss = min(expected_damage, shield_level_before)
+observed_loss = shield_level_before - shield_level_after
+```
+
+Compare `expected_loss` with `observed_loss`, allowing a small floating-point tolerance. For example, a 20-damage Energy projectile against a Kinetic shield calculates 40 damage. If the shield has only 15 capacity left, the expected loss is 15, not 40.
+
+Derive expected values from the assignment's table rather than calling the damage service you are testing. Measure around each hit so recharge between hits does not affect the comparison. You do not need to predict the final shield level across the whole volley.
+
+Stage 4 checks that your factories, schedule, damage calculation, and shield work together. You do not need to repeat the complete recharge, property-range, or rating-boundary tests from Stages 1–3 here. Additional timing and boundary cases belong in the optional Debugging and Testing pathway.
+
+### Recording the result
+
+Record the seed, every generated specification, and a named expected-versus-observed check for each impact. Include the adjusted equipment values when they differ from the requests so the result can be reproduced.
 
 Use `TestRunRecord` to save your evidence:
 
@@ -214,14 +227,16 @@ Use `TestRunRecord` to save your evidence:
 var report := TestRunRecord.new(seed)
 report.add_specification(shield_spec)
 report.add_specification(projectile_spec)
-report.check_result("damage", expected_damage, observed_damage)
+report.check_result("impact 1: shield capacity lost", expected_loss, observed_loss)
 print("Test passed: ", report.passed())
 var save_error := report.save_json("user://test_run.json")
 if save_error != OK:
 	push_error("Could not save the test report.")
 ```
 
-Add every generated spec and each important check. `passed()` is false if there are no checks or if any check fails.
+Add a separately named check for each impact and confirm that all expected impacts were checked before reporting a pass. `passed()` is false if there are no checks or if any check fails; it does not detect missing checks for you.
+
+**Submit:** the seed, recorded inputs and impact results, and steps to run the test from the Godot editor. Demonstrate that an incorrect observed result is reported as a failure, then show a passing run. You may use a clearly labeled deliberate mismatch to demonstrate failure reporting; finding and repairing a real defect is not required for this core stage.
 
 ## Optional Developed competency pathways
 
