@@ -27,6 +27,7 @@ buses/default_bus_layout="uid://w5ee687iyeu6"
 
 effects="*res://scripts/effects.gd"
 signals="*res://scripts/signals.gd"
+LabLog="*uid://d3iuqhd7da3i0"
 
 [debug]
 
@@ -36,6 +37,8 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=2
+window/stretch/mode="canvas_items"
 
 [editor]
 

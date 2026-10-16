@@ -1,6 +1,8 @@
 class_name Sounds
 extends Node3D
 
+# The spotlight sfx has a delayed start -- offset in seconds to compensate
+const SPOTLIGHT_SFX_COMPENSATION = 0.06
 
 func _ready() -> void:
 	signals.fire.connect(_on_projectile_fire)
@@ -25,7 +27,7 @@ func _on_damage(_value:float, _type:Effects.Type) -> void:
 
 
 func _on_spotlight_on() -> void:
-	$Environment/SpotlightOn.play()
+	$Environment/SpotlightOn.play(SPOTLIGHT_SFX_COMPENSATION)
 
 
 func _on_shield_down() -> void:
