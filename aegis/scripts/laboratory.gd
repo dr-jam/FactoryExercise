@@ -21,16 +21,28 @@ extends Node3D
 
 var _cameras:Array[Camera3D]= []
 
+
+func _ready():
+	LabLog.header("INITIALIZING LABORATORY")
+	_detect_cameras()
+	_start_lights()
+	LabLog.info("Laboratory initialization complete.")
+	LabLog.separator()
+
+
 func _process(_delta):
 	if(Input.is_action_just_pressed("ui_accept")):
+		LabLog.input("Operator provided fire command.")
 		weapon.fire(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
 
 func _detect_cameras():
+	LabLog.info("Detecting experimental surveillience aparatus.")
 	for child in _surveillance_system.get_children():
 		if child is Camera3D:
 			_cameras.push_back(child)
 
 func _start_lights():
+	LabLog.info("Intializing illunination system.")
 	north_light.start_delay()
 	east_light.start_delay()
 	south_light.start_delay()

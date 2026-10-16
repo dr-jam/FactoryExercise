@@ -40,6 +40,7 @@ func _process(delta):
 
 
 func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
+	LabLog.physics("Shield-projectile collision detected.")
 	var previous_current_level = current_level
 	current_level = clampf(current_level - projectile.damage, 0, max_capacity)
 	var damage_delta = previous_current_level - current_level
@@ -59,5 +60,7 @@ func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
 	signals.damage.emit(damage_delta, type)
 	
 	if is_zero_approx(current_level) && !is_zero_approx(previous_current_level):
+		LabLog.failure("Shield annihilated.")
+		LabLog.success("Shield annihilated.")
 		signals.shield_down.emit()
 	

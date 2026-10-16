@@ -18,12 +18,12 @@ func _on_projectile_fire(type:Effects.Type) -> void:
 		$Environment/EnergyFire.play()
 	if type == Effects.Type.ARCANE:
 		$Environment/ArcaneFire.play()
-	$SadOS/Fire.play()
+	$SADOS/Fire.play()
 	
 
 func _on_damage(_value:float, _type:Effects.Type) -> void:
 	if randf() < 0.25:
-		$SadOS/Damage.play()
+		$SADOS/Damage.play()
 
 
 func _on_spotlight_on() -> void:
@@ -32,4 +32,4 @@ func _on_spotlight_on() -> void:
 
 func _on_shield_down() -> void:
 	$Environment/ShieldDown.play()
-	$SadOS/ShieldDown.play()
+	$SADOS/ShieldDown.play()

@@ -44,6 +44,10 @@ window/stretch/mode="canvas_items"
 
 movie_writer/movie_file="C:/Users/josh/git/FactoryExerciseKey/aegis/exercise3-sample.avi"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/lab_log_tools/plugin.cfg")
+
 [physics]
 
 3d/default_gravity=0.0
