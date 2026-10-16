@@ -8,7 +8,7 @@ var _done:bool = true
 
 func _ready() -> void:
 	self.visible = false
-	start_delay()
+	#start_delay() # to have lights auto-start, uncomment
 
 
 func _process(_delta: float) -> void:

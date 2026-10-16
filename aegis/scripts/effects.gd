@@ -21,5 +21,5 @@ func get_type_color(type:Type) -> Color:
 	for effect_color in _effect_colors:
 		if type == effect_color.type:
 			return effect_color.color
-	printerr("Couldn't finde color for type " + str(type) + ". Returning default color of WHITE.")
+	printerr("Couldn't find color for type " + str(type) + ". Returning default color of WHITE.")
 	return Color.WHITE

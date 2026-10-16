@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://g7qyvfuhihty"]
+[gd_scene format=3 uid="uid://g7qyvfuhihty"]
 
 [ext_resource type="AudioStream" uid="uid://b2fl5eu1xg244" path="res://assets/audio/physical launch.wav" id="1_8xprt"]
 [ext_resource type="Script" uid="uid://csplsj1bfkipd" path="res://scripts/sounds.gd" id="1_pwo2x"]
@@ -112,48 +112,58 @@ stream_9/stream = ExtResource("25_ak2me")
 stream_10/stream = ExtResource("34_itdv3")
 stream_11/stream = ExtResource("18_0nl78")
 
-[node name="Sounds" type="Node3D"]
+[node name="Sounds" type="Node3D" unique_id=1488388857]
 script = ExtResource("1_pwo2x")
 
-[node name="Environment" type="Node" parent="."]
+[node name="Environment" type="Node" parent="." unique_id=1801583309]
 
-[node name="Fire" type="AudioStreamPlayer3D" parent="Environment"]
+[node name="Fire" type="AudioStreamPlayer3D" parent="Environment" unique_id=1277337513]
 stream = SubResource("AudioStreamPlaylist_l8wcs")
 max_polyphony = 30
+bus = &"Combat"
 
-[node name="Damage" type="AudioStreamPlayer3D" parent="Environment"]
+[node name="Damage" type="AudioStreamPlayer3D" parent="Environment" unique_id=2097837742]
 stream = SubResource("AudioStreamRandomizer_tdte6")
 max_polyphony = 10
+bus = &"Combat"
 
-[node name="KeneticFire" type="AudioStreamPlayer3D" parent="Environment"]
+[node name="KeneticFire" type="AudioStreamPlayer3D" parent="Environment" unique_id=2040470813]
 stream = SubResource("AudioStreamRandomizer_ej1gs")
 max_polyphony = 10
+bus = &"Combat"
 
-[node name="EnergyFire" type="AudioStreamPlayer3D" parent="Environment"]
+[node name="EnergyFire" type="AudioStreamPlayer3D" parent="Environment" unique_id=905571813]
 stream = SubResource("AudioStreamRandomizer_t8rak")
 max_polyphony = 10
+bus = &"Combat"
 
-[node name="ArcaneFire" type="AudioStreamPlayer3D" parent="Environment"]
+[node name="ArcaneFire" type="AudioStreamPlayer3D" parent="Environment" unique_id=420865430]
 stream = ExtResource("4_w23jr")
 max_polyphony = 10
+bus = &"Combat"
 
-[node name="SpotlightOn" type="AudioStreamPlayer3D" parent="Environment"]
+[node name="SpotlightOn" type="AudioStreamPlayer3D" parent="Environment" unique_id=129447893]
 stream = ExtResource("4_qi1fr")
 max_polyphony = 2
+bus = &"Laboratory"
 
-[node name="ShieldDown" type="AudioStreamPlayer3D" parent="Environment"]
+[node name="ShieldDown" type="AudioStreamPlayer3D" parent="Environment" unique_id=228629319]
 stream = SubResource("AudioStreamRandomizer_n8vct")
 max_polyphony = 10
+bus = &"Laboratory"
 
-[node name="SadOS" type="Node" parent="."]
+[node name="SADOS" type="Node" parent="." unique_id=164463657]
 
-[node name="Fire" type="AudioStreamPlayer3D" parent="SadOS"]
+[node name="Fire" type="AudioStreamPlayer3D" parent="SADOS" unique_id=115255567]
 stream = SubResource("AudioStreamRandomizer_uhaca")
 max_polyphony = 10
+bus = &"SADOS"
 
-[node name="Damage" type="AudioStreamPlayer3D" parent="SadOS"]
+[node name="Damage" type="AudioStreamPlayer3D" parent="SADOS" unique_id=136424184]
 stream = SubResource("AudioStreamRandomizer_v3jkg")
 max_polyphony = 10
+bus = &"SADOS"
 
-[node name="ShieldDown" type="AudioStreamPlayer3D" parent="SadOS"]
+[node name="ShieldDown" type="AudioStreamPlayer3D" parent="SADOS" unique_id=516452288]
 stream = SubResource("AudioStreamRandomizer_c3o4w")
+bus = &"SADOS"
