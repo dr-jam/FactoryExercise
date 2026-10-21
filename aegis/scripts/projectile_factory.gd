@@ -1,12 +1,8 @@
 class_name ProjectileFactory
 extends Node
-
+	
 
 @export var projectile_base: PackedScene
-
-# build function that takes a spec
-# 2nd build that takes rng and a shield spec
-# does it need to take rng if we drop the experiment req?
 
 
 func build(spec: ProjectileSpec) -> Projectile:
@@ -17,8 +13,17 @@ func build(spec: ProjectileSpec) -> Projectile:
 	
 	if !_verify(projectile):
 		_fit_to_constraints(projectile)
-	return null
+	return projectile
 
+
+func build_random() -> Projectile:
+	var projectile := projectile_base.instantiate() as Projectile
+
+	#stage task
+
+	if !_verify(projectile):
+		_fit_to_constraints(projectile)
+	return projectile
 
 ## Determines if the projectile is withing overall rating and inidividual attribute constraints.
 func _verify(projectile:Projectile) -> bool:
