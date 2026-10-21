@@ -2,13 +2,23 @@
 
 [ext_resource type="Script" uid="uid://bw0x71maw7dt3" path="res://scripts/laboratory.gd" id="1_kj31b"]
 [ext_resource type="PackedScene" uid="uid://bflpdqq16ov35" path="res://scenes/shield.tscn" id="2_gtrca"]
+[ext_resource type="Script" uid="uid://dfxi3cvkhijmk" path="res://scripts/projectile_factory.gd" id="2_xvyni"]
 [ext_resource type="PackedScene" uid="uid://bqlmmx43ovy2n" path="res://scenes/weapon.tscn" id="3_52x5l"]
+[ext_resource type="PackedScene" uid="uid://c4dboael2u2cu" path="res://scenes/projectile.tscn" id="3_h2vy4"]
 [ext_resource type="Script" uid="uid://cije0bj57spv3" path="res://scripts/stagger_light.gd" id="4_588iy"]
 [ext_resource type="PackedScene" uid="uid://g7qyvfuhihty" path="res://scenes/sounds.tscn" id="4_mf4v1"]
+[ext_resource type="Script" uid="uid://c6tdhbtdwppa8" path="res://scripts/shield_factory.gd" id="4_mhqq6"]
 [ext_resource type="PackedScene" uid="uid://br5i7xur6wu7u" path="res://scenes/lab_console.tscn" id="5_console"]
 
 [node name="Laboratory" type="Node3D" unique_id=1901041592]
 script = ExtResource("1_kj31b")
+
+[node name="ProjectileFactory" type="Node" parent="." unique_id=557500867]
+script = ExtResource("2_xvyni")
+projectile_base = ExtResource("3_h2vy4")
+
+[node name="ShieldFactory" type="Node" parent="." unique_id=269926946]
+script = ExtResource("4_mhqq6")
 
 [node name="WeaponAparatus" parent="." unique_id=1633593315 instance=ExtResource("3_52x5l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
