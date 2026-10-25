@@ -9,18 +9,32 @@
 [ext_resource type="PackedScene" uid="uid://g7qyvfuhihty" path="res://scenes/sounds.tscn" id="4_mf4v1"]
 [ext_resource type="Script" uid="uid://c6tdhbtdwppa8" path="res://scripts/shield_factory.gd" id="4_mhqq6"]
 [ext_resource type="PackedScene" uid="uid://br5i7xur6wu7u" path="res://scenes/lab_console.tscn" id="5_console"]
+[ext_resource type="Script" uid="uid://0jx757pmi7wd" path="res://scripts/test_sequencer.gd" id="5_h2vy4"]
+[ext_resource type="Script" uid="uid://q0qhldgt8d3h" path="res://scripts/projectile_spec.gd" id="6_1du3q"]
+[ext_resource type="Resource" uid="uid://jpuu7osbg4s0" path="res://resources/weak_kenetic_shield.tres" id="6_mhqq6"]
+[ext_resource type="Resource" uid="uid://s26tr8p0mgbw" path="res://resources/strong_energy_projectile.tres" id="7_i7dll"]
 
 [node name="Laboratory" type="Node3D" unique_id=1901041592]
 script = ExtResource("1_kj31b")
 
 [node name="ProjectileFactory" type="Node" parent="." unique_id=557500867]
+unique_name_in_owner = true
 script = ExtResource("2_xvyni")
 projectile_base = ExtResource("3_h2vy4")
 
-[node name="ShieldFactory" type="Node" parent="." unique_id=269926946]
+[node name="ShieldFactory" type="Node" parent="." unique_id=269926946 node_paths=PackedStringArray("shield_in_factory")]
+unique_name_in_owner = true
 script = ExtResource("4_mhqq6")
+shield_in_factory = NodePath("../ShieldApparatus")
 
-[node name="WeaponAparatus" parent="." unique_id=1633593315 instance=ExtResource("3_52x5l")]
+[node name="TestSequencer" type="Node" parent="." unique_id=1353173013]
+unique_name_in_owner = true
+script = ExtResource("5_h2vy4")
+projectile_sequence = Array[ExtResource("6_1du3q")]([ExtResource("7_i7dll")])
+shield = ExtResource("6_mhqq6")
+
+[node name="WeaponApparatus" parent="." unique_id=1633593315 instance=ExtResource("3_52x5l")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
 
 [node name="ShieldApparatus" parent="." unique_id=1866121915 instance=ExtResource("2_gtrca")]

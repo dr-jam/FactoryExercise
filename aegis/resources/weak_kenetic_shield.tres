@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ShieldSpec" format=3 uid="uid://jpuu7osbg4s0"]
+
+[ext_resource type="Script" uid="uid://82c1hos0pm5u" path="res://scripts/shield_spec.gd" id="1_h0224"]
+
+[resource]
+script = ExtResource("1_h0224")
+max_capacity = 50.0
+recharge_rate = 5.0
+recharge_delay = 3.0
+metadata/_custom_type_script = "uid://82c1hos0pm5u"

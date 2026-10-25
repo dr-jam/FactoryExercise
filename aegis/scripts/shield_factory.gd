@@ -6,6 +6,7 @@ extends Node
 
 func build(spec:ShieldSpec, shield:Shield = self.shield_in_factory):
 	shield.max_capacity = spec.max_capacity
+	shield.current_level = shield.max_capacity
 	shield.type = spec.type
 	shield.recharge_delay = spec.recharge_delay
 	shield.recharge_rate = spec.recharge_rate

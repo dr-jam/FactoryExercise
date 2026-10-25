@@ -53,6 +53,10 @@ func set_evaluation_status(status: String) -> void:
 	_evaluation_status.text = "POLICY REVIEW  /  " + status
 
 
+func get_selection() -> int:
+	return _projectile_selector.selected
+
+
 func _on_fire_pressed() -> void:
 	fire_requested.emit(_projectile_selector.selected)
 
