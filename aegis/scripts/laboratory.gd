@@ -10,7 +10,7 @@ class_name Laboratory
 extends Node3D
 
 @onready var shield:Shield = $ShieldApparatus
-@onready var weapon:Weapon = $WeaponAparatus
+@onready var weapon:Weapon = $WeaponApparatus
 @onready var console:LabConsole = $LabConsole
 
 @onready var north_light:StaggerLight = $Surveillance/NorthSpotLight
@@ -40,19 +40,26 @@ func _process(_delta):
 ## Starter wiring for the single default option. Replace this handler with
 ## specification lookup and factory construction when adding your own options.
 func _on_console_fire_requested(projectile_index: int) -> void:
-	if projectile_index != 0:
-		LabLog.error("No starter projectile is configured for selection %d." % projectile_index)
-		return
-	_fire_random_test_shot()
+	_fire_from_console_list()
 
 
 ## Shared by F and the console; this ad hoc demonstration is not a seeded test.
 func _fire_random_test_shot() -> void:
 	LabLog.input("Operator provided fire command.")
-	weapon.fire(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
+	weapon.fire_default(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
+
+func _fire_from_console_list() -> void:
+	var projectile_index = $LabConsole.get_selection()
+	#LabLog.test("projectile_index: " + str(projectile_index))
+	match projectile_index:
+		0:
+			_fire_random_test_shot()
+		1:
+			$TestSequencer.run_test_sequence()
+
 
 func _detect_cameras():
-	LabLog.info("Detecting experimental surveillience aparatus.")
+	LabLog.info("Detecting experimental surveillience apparatus.")
 	for child in _surveillance_system.get_children():
 		if child is Camera3D:
 			_cameras.push_back(child)

@@ -1,6 +1,6 @@
 class_name ProjectileFactory
 extends Node
-	
+
 
 @export var projectile_base: PackedScene
 
@@ -26,11 +26,11 @@ func build_random() -> Projectile:
 	return projectile
 
 ## Determines if the projectile is withing overall rating and inidividual attribute constraints.
-func _verify(projectile:Projectile) -> bool:
+func _verify(suspect_projectile:Projectile) -> bool:
 	#stage task
 	return true
 	
 ## Modifies the projectile to match the overall rating and attribute constraints.
-func _fit_to_constraints(projectile:Projectile):
+func _fit_to_constraints(projectile_to_fix:Projectile):
 	#stage task
 	pass

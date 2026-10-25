@@ -51,7 +51,7 @@ func check_result(
 		push_error("Result tolerance cannot be negative.")
 		return false
 
-	var passed := expected == observed
+	var passed:bool = expected == observed
 	if typeof(expected) in [TYPE_FLOAT, TYPE_INT] and typeof(observed) in [TYPE_FLOAT, TYPE_INT]:
 		passed = absf(float(expected) - float(observed)) <= tolerance
 
