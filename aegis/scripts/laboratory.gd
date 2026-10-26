@@ -1,11 +1,4 @@
-## The class that represents the lab space and is the defacto agent.
-
-# This class is imporant to the exercise. This is heart of the game's
-# decision-making. Testing, coordinated reactions, and assingnment criteria
-# like TestFactories generating and running TestSchedules should be handled
-# here.
-
-
+## Coordinates operator input, laboratory equipment, and console feedback.
 class_name Laboratory
 extends Node3D
 
@@ -28,6 +21,7 @@ func _ready():
 	_detect_cameras()
 	_start_lights()
 	console.fire_requested.connect(_on_console_fire_requested)
+	$TestSequencer.status_changed.connect(console.set_test_status)
 	_update_console_status()
 	LabLog.info("Laboratory initialization complete.")
 	LabLog.separator()
@@ -50,26 +44,18 @@ func _update_console_status() -> void:
 	console.update_projectile_status(weapon.get_active_projectiles())
 
 
-## Starter wiring for the single default option. Replace this handler with
-## specification lookup and factory construction when adding your own options.
 func _on_console_fire_requested(projectile_index: int) -> void:
-	_fire_from_console_list()
-
-
-## Shared by F and the console; this ad hoc demonstration is not a seeded test.
-func _fire_random_test_shot() -> void:
-	LabLog.input("Operator provided fire command.")
-	weapon.fire_default(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
-
-func _fire_from_console_list() -> void:
-	var projectile_index = $LabConsole.get_selection()
-	#LabLog.test("projectile_index: " + str(projectile_index))
 	match projectile_index:
 		0:
 			_fire_random_test_shot()
 		1:
 			$TestSequencer.run_test_sequence()
 
+
+## Shared by F and the console; random shots are not a seeded test.
+func _fire_random_test_shot() -> void:
+	LabLog.input("Operator provided fire command.")
+	weapon.fire_default(Effects.Type.values().pick_random(), randf_range(5.0, 20.0))
 
 func _detect_cameras():
 	LabLog.info("Detecting experimental surveillience apparatus.")
