@@ -62,22 +62,6 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.12, 0.15, 0.16, 1)
 
-[sub_resource type="StyleBoxFlat" id="SecondaryNormal"]
-bg_color = Color(0.22, 0.55, 0.61, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.12, 0.15, 0.16, 1)
-
-[sub_resource type="StyleBoxFlat" id="SecondaryHover"]
-bg_color = Color(0.3, 0.68, 0.72, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.12, 0.15, 0.16, 1)
-
 [node name="LabConsole" type="CanvasLayer" unique_id=220286526]
 script = ExtResource("1_console")
 
@@ -85,7 +69,7 @@ script = ExtResource("1_console")
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 410.0
-offset_bottom = 408.0
+offset_bottom = 310.0
 theme_override_styles/panel = SubResource("ConsolePanel")
 
 [node name="Margin" type="MarginContainer" parent="Panel" unique_id=2093666680]
@@ -187,12 +171,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
 text = "TEST SEQUENCE  /  idle"
 
-[node name="EvaluationStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=778112]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
-text = "POLICY REVIEW  /  not run"
-
 [node name="SectionTwo" type="Label" parent="Panel/Margin/VBox" unique_id=860545950]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.22, 0.55, 0.61, 1)
@@ -203,7 +181,7 @@ text = "02  /  SELECT PROJECTILE"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 34)
 layout_mode = 2
-tooltip_text = "Starter demonstration: random effect type and 5-20 damage. Same as F."
+tooltip_text = "Choose a random projectile (same as F) or the configured test sequence, then press FIRE SELECTED."
 theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
 theme_override_styles/normal = SubResource("SelectorPanel")
 selected = 0
@@ -227,52 +205,6 @@ theme_override_styles/pressed = SubResource("ActionPressed")
 theme_override_styles/hover = SubResource("ActionHover")
 text = "FIRE SELECTED"
 
-[node name="RunButton" type="Button" parent="Panel/Margin/VBox/Controls" unique_id=253321477]
-custom_minimum_size = Vector2(0, 34)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.98, 0.98, 0.94, 1)
-theme_override_styles/normal = SubResource("SecondaryNormal")
-theme_override_styles/pressed = SubResource("ActionPressed")
-theme_override_styles/hover = SubResource("SecondaryHover")
-text = "RUN SCHEDULE"
-
-[node name="CancelButton" type="Button" parent="Panel/Margin/VBox/Controls" unique_id=2055167757]
-custom_minimum_size = Vector2(0, 34)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
-theme_override_styles/normal = SubResource("SelectorPanel")
-theme_override_styles/hover = SubResource("StatusPanel")
-text = "CANCEL"
-
-[node name="SectionThree" type="Label" parent="Panel/Margin/VBox" unique_id=1625592473]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.22, 0.55, 0.61, 1)
-theme_override_font_sizes/font_size = 11
-text = "03  /  ANALYSIS & DIAGNOSTICS"
-
-[node name="AssessmentControls" type="HBoxContainer" parent="Panel/Margin/VBox" unique_id=1555675158]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="EvaluateButton" type="Button" parent="Panel/Margin/VBox/AssessmentControls" unique_id=2013373837]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.98, 0.98, 0.94, 1)
-theme_override_styles/normal = SubResource("SecondaryNormal")
-theme_override_styles/hover = SubResource("SecondaryHover")
-text = "COMPARE POLICIES"
-
-[node name="DebugButton" type="Button" parent="Panel/Margin/VBox/AssessmentControls" unique_id=79134412]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
-theme_override_styles/normal = SubResource("ActionNormal")
-theme_override_styles/hover = SubResource("ActionHover")
-text = "DEBUG CASE"
-
 [node name="Footer" type="Label" parent="Panel/Margin/VBox" unique_id=327002162]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25, 0.3, 0.31, 1)
@@ -282,7 +214,3 @@ horizontal_alignment = 1
 
 [connection signal="pressed" from="Panel/Margin/VBox/Header/ToggleButton" to="." method="_on_toggle_pressed"]
 [connection signal="pressed" from="Panel/Margin/VBox/Controls/FireButton" to="." method="_on_fire_pressed"]
-[connection signal="pressed" from="Panel/Margin/VBox/Controls/RunButton" to="." method="_on_run_schedule_pressed"]
-[connection signal="pressed" from="Panel/Margin/VBox/Controls/CancelButton" to="." method="_on_cancel_schedule_pressed"]
-[connection signal="pressed" from="Panel/Margin/VBox/AssessmentControls/EvaluateButton" to="." method="_on_evaluate_policies_pressed"]
-[connection signal="pressed" from="Panel/Margin/VBox/AssessmentControls/DebugButton" to="." method="_on_debugging_scenario_pressed"]

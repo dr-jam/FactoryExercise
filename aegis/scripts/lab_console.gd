@@ -2,10 +2,6 @@ class_name LabConsole
 extends CanvasLayer
 
 signal fire_requested(projectile_index: int)
-signal run_schedule_requested
-signal cancel_schedule_requested
-signal evaluate_policies_requested
-signal debugging_scenario_requested
 signal collapsed_changed(collapsed: bool)
 
 @export var start_collapsed := true
@@ -17,7 +13,6 @@ signal collapsed_changed(collapsed: bool)
 @onready var _shield_status: Label = %ShieldStatus
 @onready var _projectile_status: Label = %ProjectileStatus
 @onready var _test_status: Label = %TestStatus
-@onready var _evaluation_status: Label = %EvaluationStatus
 
 var _collapsed := false
 var _expanded_bottom_offset: float
@@ -49,32 +44,12 @@ func set_test_status(status: String) -> void:
 	_test_status.text = "TEST SEQUENCE  /  " + status
 
 
-func set_evaluation_status(status: String) -> void:
-	_evaluation_status.text = "POLICY REVIEW  /  " + status
-
-
 func get_selection() -> int:
 	return _projectile_selector.selected
 
 
 func _on_fire_pressed() -> void:
 	fire_requested.emit(_projectile_selector.selected)
-
-
-func _on_run_schedule_pressed() -> void:
-	run_schedule_requested.emit()
-
-
-func _on_cancel_schedule_pressed() -> void:
-	cancel_schedule_requested.emit()
-
-
-func _on_evaluate_policies_pressed() -> void:
-	evaluate_policies_requested.emit()
-
-
-func _on_debugging_scenario_pressed() -> void:
-	debugging_scenario_requested.emit()
 
 
 func _on_toggle_pressed() -> void:
