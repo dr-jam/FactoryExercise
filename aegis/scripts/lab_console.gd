@@ -70,9 +70,9 @@ func update_shield_status(shield: Shield) -> void:
 
 func update_projectile_status(projectiles: Array[Projectile]) -> void:
 	_projectile_status.text = "PROJECTILES / %d active" % projectiles.size()
-	_projectile_scroll.visible = not projectiles.is_empty()
 	if projectiles.is_empty():
 		_projectile_status.text = "PROJECTILES / Idle"
+		_projectile_scroll.scroll_vertical = 0
 
 	while _projectile_list.get_child_count() > projectiles.size():
 		var row := _projectile_list.get_child(_projectile_list.get_child_count() - 1)
