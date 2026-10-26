@@ -50,6 +50,18 @@ func reset_for_test() -> void:
 		_recharge_delay_timer.stop()
 
 
+func is_depleted() -> bool:
+	return _is_depleted
+
+
+func is_recharging() -> bool:
+	return _is_recharging
+
+
+func get_recharge_delay_remaining() -> float:
+	return _recharge_delay_timer.time_left
+
+
 func _process(delta):
 	#animated shield scale based on damage done
 	var new_scale:Vector3 = Vector3.ONE * clampf(current_level / max_capacity, 0.01, 1.0)

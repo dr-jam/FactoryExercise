@@ -28,6 +28,7 @@ func _ready():
 	_detect_cameras()
 	_start_lights()
 	console.fire_requested.connect(_on_console_fire_requested)
+	_update_console_status()
 	LabLog.info("Laboratory initialization complete.")
 	LabLog.separator()
 
@@ -35,6 +36,39 @@ func _ready():
 func _process(_delta):
 	if(Input.is_action_just_pressed("fire_test_shot")):
 		_fire_random_test_shot()
+	_update_console_status()
+
+
+func _update_console_status() -> void:
+	var shield_state := "Full"
+	if shield.is_depleted():
+		shield_state = "Depleted"
+	elif shield.current_level < shield.max_capacity:
+		if shield.is_recharging():
+			shield_state = "Recharging (+%.1f/s)" % shield.recharge_rate
+		else:
+			shield_state = "Recharge in %.1fs" % shield.get_recharge_delay_remaining()
+	console.set_shield_status("%s | %.1f / %.1f\n%s" % [
+		effects.get_type_name(shield.type),
+		shield.current_level,
+		shield.max_capacity,
+		shield_state,
+	])
+
+	var projectile_statuses: PackedStringArray = []
+	for projectile in weapon.get_active_projectiles():
+		var projectile_state := "In flight"
+		if projectile.is_charging():
+			projectile_state = "Charging (%.1fs)" % projectile.get_charge_time_remaining()
+		projectile_statuses.append("%s | %.1f damage | %s" % [
+			effects.get_type_name(projectile.type),
+			projectile.damage,
+			projectile_state,
+		])
+	if projectile_statuses.is_empty():
+		console.set_projectile_status("Idle")
+	else:
+		console.set_projectile_status("\n".join(projectile_statuses))
 
 
 ## Starter wiring for the single default option. Replace this handler with

@@ -17,6 +17,18 @@ func _ready() -> void:
 	_effect_colors.append(preload("res://resources/arcane_color.tres"))
 
 
+func get_type_name(type:Type) -> String:
+	match type:
+		Type.KENETIC:
+			return "Kinetic"
+		Type.ENERGY:
+			return "Energy"
+		Type.ARCANE:
+			return "Arcane"
+	LabLog.error("Unknown effect type: %s" % type)
+	return "Unknown"
+
+
 func get_type_color(type:Type) -> Color:
 	for effect_color in _effect_colors:
 		if type == effect_color.type:
