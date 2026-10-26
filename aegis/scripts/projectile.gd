@@ -31,6 +31,14 @@ func _ready():
 	_timer.start(charge_time)
 
 
+func is_charging() -> bool:
+	return not _fired
+
+
+func get_charge_time_remaining() -> float:
+	return _timer.time_left
+
+
 func _process(delta):
 	if _timer.is_stopped():
 		if !_fired:
