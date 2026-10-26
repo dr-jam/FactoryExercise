@@ -29,6 +29,12 @@ func _ready() -> void:
 	_set_collapsed(start_collapsed)
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("toggle_console"):
+		_on_toggle_pressed()
+		get_viewport().set_input_as_handled()
+
+
 ## Replaces the default demonstration option. Keep your specs in this order and
 ## replace Laboratory's starter fire-request handler to build the selected spec.
 func set_projectile_options(options: Array[String]) -> void:
