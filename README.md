@@ -53,6 +53,12 @@ Open `aegis` in Godot 4 and run the `Laboratory` scene. It provides:
 
 You don't need to implement these systems from scratch. Read the code, run a few experiments, and work out where your changes should go.
 
+Press Tab or X on a controller to show or hide the console. You can also use its + / − button.
+
+Press F to fire a random projectile or Space to run the loaded test sequence. Both options are available from the console’s dropdown and FIRE SELECTED button.
+
+The console displays shield capacity, recharge progress, and the charge status of active projectiles.
+
 Damage is calculated as `projectile_damage * type_factor`:
 
 | Projectile type | Kinetic shield | Energy shield | Arcane shield |
@@ -158,4 +164,3 @@ Use at least one principle from Nielsen's [“10 Usability Heuristics for User I
 One feature can support multiple claims. For example, a projectile-sequence editor with a heat mechanic could demonstrate Interaction Design through the editor and Game Design Reasoning through the consequences of attack order. A shared heat budget that changes factories, charging, and scheduling might also demonstrate System Interrelations.
 
 You still need to show **distinct evidence** for each competency. The same feature isn't automatically evidence for all the competencies it touches.
-
