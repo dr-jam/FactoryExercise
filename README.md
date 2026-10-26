@@ -2,7 +2,6 @@
 
 *Welcome to the Aegis Testing Initiative. We congratulate you on your selection for a position involving shield technology, projectile technology, and a scientifically acceptable amount of property damage.*
 
-
 <!-- ## Competency Claims and Descriptions
 
 Your comptency claims and other information we need to know to best grade your work. For each claim, use this template
@@ -41,9 +40,20 @@ There are four competencies available: Game Design Reasoning, Design Context, Sy
 
 ## Competency assessment and submission
 
+Submit the complete Godot project and your competency claims using the course's submission instructions. Put your claims in this README under a **Competency claims** heading. For each of your two or more claims, include:
+
+- **Competency and level:** the competency you are claiming at Developed.
+- **Implementation:** what you changed, with links to the relevant scripts and scenes.
+- **Reasoning:** why you made those decisions, citing the required reading or course concept.
+- **Demonstration:** steps to run the feature and the contrasting or troublesome cases requested for that competency.
+- **Results:** what happened, including the outside-user observation for Interaction Design.
+- **Assistance:** substantial help you received, including generative AI, and which parts you completed yourself.
+
+Run the project from a clean checkout before submitting. Include new assets and resource files, and make sure your demonstration steps work without your local editor cache. If you replace the default test, explain how to run your version. See the course competency guide for assessment criteria.
+
 ## The supplied project
 
-Open `aegis` in Godot and run the `Laboratory` scene. It provides:
+Use **Godot 4.7.2**, the version tested with this starter.  It provides:
 
 - Shields that take damage and recharge after a delay.
 - Kinetic, Energy, and Arcane damage types.
@@ -58,6 +68,8 @@ Press Tab or X on a controller to show or hide the console. You can also use its
 Press F to fire a random projectile or Space to run the loaded test sequence. Both options are available from the console’s dropdown and FIRE SELECTED button.
 
 The console displays shield capacity, recharge progress, and the charge status of active projectiles.
+
+The test status shows the current shot and, when finished, counts of hits and misses. A hit means a projectile contacted the shield, including a depleted shield; it does not necessarily mean capacity was lost. Missed projectiles expire after eight seconds of flight so the sequence can continue. A depleted shield stays down until the next test resets it. Avoid firing extra random shots during a sequence when comparing results.
 
 Damage is calculated as `projectile_damage * type_factor`:
 
@@ -91,21 +103,24 @@ projectile_rating = damage * 2.0 + (3.0 - charge_time) ** 4.0
 
 The shield rating limit is **300** and the projectile rating limit is **100**. You may change the rules if your design requires it. Document the changes and their effects. The original test should continue to run unless replacing its behavior is part of your extension.
 
+Factories clamp properties to their individual ranges, then reduce shield recharge rate or projectile damage if needed to meet the rating limit. The original specification resources are not changed. Random demonstration shots also use the projectile factory and charge for 0.5 seconds.
+
 ### Scene and scripts
 
 The `Laboratory` scene contains the test environment, the shield apparatus, and the weapon apparatus. The shield spawns at the shield apparatus. The weapon fires projectiles from its projectile spawn point.
 
 Scripts relevant to this exercise include:
 
-* [Shield](aegis/scripts/shield.gd): capacity, damage handling, visual feedback, and the unfinished recharge behavior for Stage 1.
+* [Shield](aegis/scripts/shield.gd): capacity, damage handling, visual feedback, and delayed recharge.
 * [Projectile](aegis/scripts/projectile.gd): projectile properties, charge timer, movement, and collision.
 * [ShieldSpec](aegis/scripts/shield_spec.gd) and [ProjectileSpec](aegis/scripts/projectile_spec.gd): data holders for the specifications.
 * [Effects](aegis/scripts/effects.gd): the effect types and colors. The kinetic enum member is spelled `KENETIC` in the supplied project.
 * [Laboratory](aegis/scripts/laboratory.gd): the laboratory's firing behavior.
+* [TestSequencer](aegis/scripts/test_sequencer.gd): repeatable test runs, shot progress, and hit/miss counts.
+* [ShieldFactory](aegis/scripts/shield_factory.gd) and [ProjectileFactory](aegis/scripts/projectile_factory.gd): construction and equipment constraints.
 * [DamageIndicator](aegis/scripts/damage_indiciator.gd): the damage display shown when a projectile hits a shield.
 
-The project autoloads `effects` and `signals`.
-
+The project autoloads `effects`, `signals`, and `LabLog`.
 
 ## Choose your competencies
 
