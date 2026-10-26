@@ -142,7 +142,7 @@ Read Salen and Zimmerman, [*Rules of Play*, Chapter 3, “Meaningful Play”](ht
 
 ### Design Context — Adapt Aegis to a context
 
-Choose a genre, platform, audience, or other play context and make Aegis fit it. Find a concrete precedent, such as an existing game, and study what players actually do in it. Copying its visual style isn't enough.
+Choose a genre, platform, audience, or other play context and make Aegis fit it. Find a concrete precedent, such as an existing game, and study what players actually do in it. Copying its visual style is interesting but you need to work at the level of rules, mechanics, and systems.
 
 A tactical adaptation might reveal the upcoming attacks and let players plan. An arcade adaptation might reward well-timed interventions. A management game might ask players to budget power between manufacturing, firing, and defense.
 
@@ -156,7 +156,7 @@ Implement a behavior that involves **at least three existing systems**. Decide w
 
 You could have the test schedule respond to the shield's current state and observed damage. Or share a power budget across the factories, weapon charging, and shield recharge. Another option is to let the outcome of one test determine the specifications manufactured for the next.
 
-Use the existing scenes, nodes, and signals where they make sense. Don't maintain several copies of the same state or recalculate damage in different places.
+Use the existing scenes, nodes, and signals where they make sense. Don't dpulicate same state or recalculate damage in different places.
 
 For **Developed**, show the feature working and identify the **three or more systems** involved. Explain their responsibilities and interfaces. Diagrams are excellent tools for this task. Demonstrate a normal run and a troublesome one—for example, an interrupted test, insufficient power, an invalid specification, or conflicting events—and show that the systems remain consistent.
 
