@@ -111,7 +111,8 @@ func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
 	signals.damage.emit(damage_delta, type)
 	
 	if is_zero_approx(current_level) && !is_zero_approx(previous_current_level):
-		LabLog.test("Shield depleted.")
+		LabLog.failure("Shield annihilated.")
+		LabLog.success("Shield annihilated.")
 		_is_depleted = true
 		signals.shield_down.emit()
 
