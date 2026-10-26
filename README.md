@@ -2,57 +2,88 @@
 
 *Welcome to the Aegis Testing Initiative. We congratulate you on your selection for a position involving shield technology, projectile technology, and a scientifically acceptable amount of property damage.*
 
-## Competency Claims and Descriptions
 
-Your comptency claims and other information we need to know to best grade your wor
+<!-- ## Competency Claims and Descriptions
 
-## Learning goals
+Your comptency claims and other information we need to know to best grade your work. For each claim, use this template
 
-In this exercise, you will:
+### Comptency: Level
 
-* apply the factory design pattern to a small game system
-* implement game behavior from specifications, tables, and equations
-* test and evaluate the behavior of the system you build
+#### Implementation
+*What you changed, with links or paths to the relevant scripts and scenes.*
+#### Reasoning
+*Why you made those decisions; cite the reading or course concept when required.*
+#### Demonstration
+*Steps we can follow to reproduce the feature and the contrasting or edge cases requested above.*
+#### Results
+*What happened, including the outside-user observation if you're claiming Interaction Design.*
+#### Assistance
+*Substantial help you received, including use of generative AI, and which parts you completed yourself.*
 
-The supplied project is a Godot 4 project written in GDScript. Changes to the test chamber are expected. Changes to the laws of arithmetic are not.
+*Run the game from a clean checkout before submitting. Make sure the steps in your evidence file actually work. If your design intentionally changes the default laboratory test, say how to run your version.*
+
+### Game Design Reasoning: Developed
+
+### Design Context: Developed
+
+### System Interrelations: Developed
+
+### Interaction Design: Developed -->
+
+
+## Description
+
+Aegis is a Godot 4 project that manufactures shields and projectiles using the Factory Pattern and runs automated combat tests. The starter project already handles damage types, shield recharge, equipment specifications, and test sequences.
+
+Your assignment is to extend it. You can change the rules, change how someone interacts with the laboratory, or turn the test into a different kind of game. The change needs to work, and you need to explain the decisions behind it.
+
+There are four competencies available: Game Design Reasoning, Design Context, System Interrelations, and Interaction Design. Demonstrate any two at Developed to receive the exercise completion bonus. You may use one extension as evidence for multiple competencies, but each claim needs its own justification. There are no stage scores or points; the course competency guide explains how claims are assessed.
 
 ## Competency assessment and submission
 
-Complete the core stages and submit evidence for the competencies below. These are the target levels; assessment depends on your implementation, tests, and explanation.
+## The supplied project
 
-| Stage | Competency evidence | Target level |
-|:---|:---|:---|
-| **1. Shields Online** | Game Systems; Engine Usage | Unlocked; Unlocked |
-| **2. Damage Engine** | Game Systems | Unlocked |
-| **3.1. Specific Construction** | Design Patterns; Engine Usage | Unlocked; Unlocked |
-| **3.2. Power Underwhelming** | Game Systems | Developed |
-| **4. Still Alive** | Debugging and Testing; System Interrelations | Unlocked; Developed |
-| **Optional: Debugging and Testing** | Debugging and Testing | Developed |
-| **Optional: 4.1. Laboratory Operator Console** | Interaction Design | Developed |
-| **Optional: Evaluation and Iteration** | Evaluation and Iteration | Developed |
+Open `aegis` in Godot 4 and run the `Laboratory` scene. It provides:
 
-The course uses four competency levels:
+- Shields that take damage and recharge after a delay.
+- Kinetic, Energy, and Arcane damage types.
+- Shield and projectile specifications, factories, and equipment power limits.
+- A reproducible sequence of 5–10 projectiles, including charge timing and results.
+- Basic controls and status information for running the test.
 
-* **Locked:** The submitted work does not yet provide sufficient evidence of the competency.
-* **Unlocked:** You can apply a taught technique in a guided context and show that it works.
-* **Developed:** You can adapt the technique, make and explain your own design decisions, and test a nontrivial case.
-* **Mastered:** You can solve a substantial problem independently, compare alternatives and trade-offs, and test normal and failure cases.
+You don't need to implement these systems from scratch. Read the code, run a few experiments, and work out where your changes should go.
 
-The **core stages** are required. You may also submit **up to two additional competency claims** at Developed or Mastered level. The optional pathways below suggest work for Developed claims. For any claim, show what you built, the decisions you made, and how you checked the result; adding a feature alone is not enough.
+Damage is calculated as `projectile_damage * type_factor`:
 
-For each additional claim, provide:
+| Projectile type | Kinetic shield | Energy shield | Arcane shield |
+|:---|---:|---:|---:|
+| Kinetic | 1 | 0.5 | 2 |
+| Energy | 2 | 1 | 0.5 |
+| Arcane | 0.5 | 2 | 1 |
 
-* **Competency:** Which competency are you claiming?
-* **Level:** Developed or Mastered.
-* **Evidence:** Paths to relevant scripts/scenes/tests and instructions for reproducing a result.
-* **Explanation:** Your contribution, the decisions you made, and why the work supports the claimed level.
-* **Assistance:** Identify substantial assistance, including help from people or generative AI, and explain your own contribution.
+The factory specifications are:
 
-A claim may be accepted at the requested level or a lower level, returned for revision, or found unsupported. Mastered claims may require an individual demonstration or explanation. Follow the course competency guide and your instructor's submission requirements and due dates.
+| Shield property | Range |
+|:---|:---|
+| Capacity (`max_capacity`) | 50–250 |
+| Recharge delay (`recharge_delay`) | 0.5–5 seconds |
+| Recharge rate (`recharge_rate`) | 1–25 points/second |
+| Type | Kinetic, Energy, Arcane |
 
-## Provided Godot project
+| Projectile property | Range |
+|:---|:---|
+| Damage | 1–50 |
+| Charge time (`charge_time`) | 0.5–3 seconds |
+| Type | Kinetic, Energy, Arcane |
 
-Open the `aegis` directory in Godot and run the project from the editor. It uses GDScript and Compatibility rendering mode. Press **F** to fire a random test projectile, or expand the console and click **Fire**.
+The equipment ratings are:
+
+```text
+shield_rating = max_capacity + (5.0 - recharge_delay) * 5.0 + recharge_rate * (recharge_rate / 2.0)
+projectile_rating = damage * 2.0 + (3.0 - charge_time) ** 4.0
+```
+
+The shield rating limit is **300**; the projectile rating limit is **100**. You may change the rules if your design requires it. Document the changes and their effects. The original test should continue to run unless replacing its behavior is part of your extension.
 
 ### Scene and scripts
 
@@ -62,252 +93,69 @@ Scripts relevant to this exercise include:
 
 * [Shield](aegis/scripts/shield.gd): capacity, damage handling, visual feedback, and the unfinished recharge behavior for Stage 1.
 * [Projectile](aegis/scripts/projectile.gd): projectile properties, charge timer, movement, and collision.
+* [ShieldSpec](aegis/scripts/shield_spec.gd) and [ProjectileSpec](aegis/scripts/projectile_spec.gd): data holders for the specifications.
 * [Effects](aegis/scripts/effects.gd): the effect types and colors. The kinetic enum member is spelled `KENETIC` in the supplied project.
 * [Laboratory](aegis/scripts/laboratory.gd): the laboratory's firing behavior.
 * [DamageIndicator](aegis/scripts/damage_indiciator.gd): the damage display shown when a projectile hits a shield.
 
-The project autoloads `effects` and `signals`. Stage 2 adds the damage calculation service as another autoload.
+The project autoloads `effects` and `signals`.
 
-### Supplied helpers
 
-The starter supplies the helpers below. You implement recharge, damage calculation, the factories, `TestFactory`, and the checks for your tests. You also design your own adjustment policy and, if you choose the console pathway, connect its remaining interactions.
+## Choose your competencies
 
-* [ShieldSpec](aegis/scripts/shield_spec.gd) and [ProjectileSpec](aegis/scripts/projectile_spec.gd): data holders for the specifications in Stages 3 and 4.
-* [TestSchedule](aegis/scripts/test_schedule.gd): sequential projectile launches with charge-time spacing and cancellation, for Stage 4.
-* [TestRunRecord](aegis/scripts/test_run_record.gd): records a seed, specs, and expected-versus-observed checks; saves JSON under `user://`.
-* [EvaluationBatch](aegis/scripts/evaluation_batch.gd): generates repeatable inputs, including over-budget requests.
-* [ExampleAdjustmentPolicy](aegis/scripts/example_adjustment_policy.gd): a working baseline that reduces projectile damage or shield recharge rate to meet the budget.
-* [PolicyEvaluationRunner](aegis/scripts/policy_evaluation_runner.gd): runs two policies on separate copies of the same inputs and collects their outputs.
-* [LabConsole](aegis/scenes/lab_console.tscn): a collapsible console with a working random-shot button and signals for the remaining controls.
-* [Assessment template](aegis/ASSESSMENT_TEMPLATE.md): a student evidence form and a TA review checklist.
+The examples below are starting points, not required features. Pick at least two competencies to pursue at Developed.
 
-The helper scripts include usage comments. The relevant stages below explain how to use them.
+### Game Design Reasoning — Add a mechanic
 
-## Core implementation stages
+The laboratory can destroy a shield. The question is whether doing so makes for an interesting game.
 
-### Stage 1: Shields Online
+Add a mechanic, or substantially revise an existing one, so that the player has a new decision to make. It should involve a tradeoff and affect something already in Aegis: recharge, damage types, charge timing, manufacturing, or the test sequence.
 
-*The Aegis shield is excellent at absorbing damage. Its present difficulty is remembering that it is supposed to recover afterward. This is a minor issue, according to the department responsible for ordering new shields.*
+For example, overcharging could trade more damage for a longer charge time. A combination system could make projectile order matter. A shield could adapt to repeated damage types. You aren't limited to these ideas.
 
-Complete the recharge behavior in `Shield`, using its `recharge_rate`, `recharge_delay`, `max_capacity`, and `current_level` properties.
+Adding another projectile color isn't a mechanic. Neither is doubling every damage value. What does the player get to decide, and why might they choose differently from one situation to another?
 
-Requirements:
+Read Salen and Zimmerman, [*Rules of Play*, Chapter 3, “Meaningful Play”](https://www.creativegames.org.uk/modules/Intro_Game_Studies/Salen_Zimmerman-Rules_of_Play_Chapter3_2003.pdf), particularly discernible and integrated consequences.
 
-* A shield starts at its maximum capacity.
-* After a hit, wait `recharge_delay` seconds before recharging. A later hit restarts that delay.
-* Recharge at `recharge_rate` capacity points per second after the delay.
-* Stop recharging at `max_capacity`; never allow `current_level` below zero or above the maximum.
-* If a shield is created below its maximum capacity, it observes one recharge delay before it begins recharging.
+**Developed:** Implement your mechanic and explain the choice it creates. Show **two situations** in which different choices have different consequences. Relate your design to the reading, identify the relevant code, and discuss at least one tradeoff or weakness.
 
-Demonstrate the behavior with tests or a repeatable in-game demonstration covering a hit, the delay, recharge, a second hit during recharge, and both capacity bounds.
+### Design Context — Adapt Aegis to a context
 
-### Stage 2: Damage Engine
+Choose a genre, platform, audience, or other play context and make Aegis fit it. Find a concrete precedent, such as an existing game, and study what players actually do in it. Copying its visual style isn't enough.
 
-Create a damage calculation service with a static function that accepts the relevant shield and projectile properties and returns:
+A tactical adaptation might reveal the upcoming attacks and let players plan. An arcade adaptation might reward well-timed interventions. A management game might ask players to budget power between manufacturing, firing, and defense.
 
-`damage = projectile_damage * type_factor`
+Implement **at least two context-driven design decisions**, with **at least one affecting gameplay or interaction** rather than appearance. Explain how the precedent informed those choices and describe an alternative you considered but didn't use. Show us the results in the project and point to the code.
 
-| Projectile type | Kinetic shield | Energy shield | Arcane shield |
-|:---------------:|:--------------:|:-------------:|:-------------:|
-| Kinetic | 1 | 0.5 | 2 |
-| Energy | 2 | 1 | 0.5 |
-| Arcane | 0.5 | 2 | 1 |
+Apperley's [“Genre and Game Studies” (2006)](https://doi.org/10.1177/1046878105282278) is a useful reading here. If your context isn't primarily about genre, use another relevant course reading and identify it in your write-up.
 
-Add the service as an [autoload](https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html) in Project Settings. You do not need to place it in the laboratory scene. Use it when a projectile hits a shield.
+### System Interrelations — Coordinate existing systems
 
-Check the results against the table, including interactions between unlike types.
+Implement a behavior that involves **at least three existing systems**. Decide which system owns each part of the behavior, how information passes between them, and what happens if the expected sequence is interrupted.
 
-### Stage 3: Factories and Specifications
+You could have the test schedule respond to the shield's current state and observed damage. Or share a power budget across the factories, weapon charging, and shield recharge. Another option is to let the outcome of one test determine the specifications manufactured for the next.
 
-Create factories that build shield and projectile nodes from specifications. Use the supplied shield and projectile scenes as a guide.
+Use the existing scenes, nodes, and signals where they make sense. Don't maintain several copies of the same state or recalculate damage in different places.
 
-#### Stage 3.1: Specific Construction
+For **Developed**, show the feature working and identify the **three or more systems** involved. Explain their responsibilities and interfaces; a small diagram is fine. Demonstrate a normal run and a troublesome one—for example, an interrupted test, insufficient power, an invalid specification, or conflicting events—and show that the systems remain consistent.
 
-Use the supplied data-only `ShieldSpec` and `ProjectileSpec` classes. Create `ShieldFactory` and `ProjectileFactory`.
+Relevant course material: components, Godot nodes/signals, and Nystrom's [*Game Programming Patterns*: Observer](https://gameprogrammingpatterns.com/observer.html).
 
-Each factory must:
+### Interaction Design — Improve the operator's controls
 
-* provide a `build` function that accepts the matching specification and returns a newly instantiated, configured node;
-* copy all specified properties to the new node, including its type; and
-* provide a random-generation function that accepts a `RandomNumberGenerator` and returns a specification whose values are within the ranges below. This lets `TestFactory` reproduce generated tests from a known seed. For example:
-``` GDSCRIPT
-var rng := RandomNumberGenerator.new()
-rng.seed = 42
-var spec := projectile_factory.generate_random(rng)
-```
+*The test works. The operator would like some idea of what it's doing.*
 
-The factory creates the node but does not add it to the scene tree. The caller is responsible for parenting and freeing it.
+Find something the operator needs to control or understand and build an interaction around it. A sequence editor, damage explanation, comparison between tests, or mid-test intervention would all be reasonable directions.
 
-Specifications must use these ranges:
+Pay attention to what happens before and after an action: when is it available, how does the interface acknowledge it, what changed, and what happens if the player tries something invalid? Connect your interface to actual game state. A panel of hard-coded values won't do.
 
-| Shield property | Allowed range |
-|---|---:|
-| Capacity (`max_capacity`) | 50–250 |
-| Recharge delay (`recharge_delay`) | 0.5–5 seconds |
-| Recharge rate (`recharge_rate`) | 1–25 capacity points per second |
-| Type | Kinetic, Energy, or Arcane |
+Have **someone unfamiliar with your implementation** try the interaction. For **Developed**, demonstrate normal use and at least one awkward or invalid case. Explain a specific design decision, report something you observed during the tryout, and describe what you would change (or changed) as a result.
 
-| Projectile property | Allowed range |
-|---|---:|
-| Damage | 1–50 |
-| Charge time (`charge_time`) | 0.5–3 seconds |
-| Type | Kinetic, Energy, or Arcane |
+Use at least one principle from Nielsen's [“10 Usability Heuristics for User Interface Design”](https://www.nngroup.com/articles/ten-usability-heuristics/). Swink's *Game Feel* is another option for interactions involving timing and responsiveness.
 
+## Claiming more than one competency
 
-#### Stage 3.2: Power Underwhelming
+One feature can support multiple claims. For example, a projectile-sequence editor with a heat mechanic could demonstrate Interaction Design through the editor and Game Design Reasoning through the consequences of attack order. A shared heat budget that changes factories, charging, and scheduling might also demonstrate System Interrelations.
 
-*Your factories have been assigned power budgets. Requests for additional power have been denied. The facility needs the electricity for a different experiment, which is going extremely well and should not be investigated.*
+You still need to show **distinct evidence** for each competency. The same feature isn't automatically evidence for all the competencies it touches.
 
-Adjust over-budget specifications before building the equipment. Keep the adjusted values within the Stage 3.1 ranges and use these rating formulas:
-
-`shield_rating = max_capacity + (5.0 - recharge_delay) * 5.0 + recharge_rate * (recharge_rate / 2.0)`
-
-`projectile_rating = damage * 2.0 + (3.0 - charge_time) ** 4.0`
-
-The maximum ratings are **300 for a shield** and **100 for a projectile**. A rating equal to the limit is allowed.
-
-Choose which properties to adjust and explain the trade-off. Read [ExampleAdjustmentPolicy](aegis/scripts/example_adjustment_policy.gd) for one approach, then design your own. Test an in-range specification, an over-budget specification, and one that lands exactly at the limit. Verify the property ranges as well as the ratings.
-
-The optional Evaluation and Iteration pathway asks you to compare and revise policies.
-
-### Stage 4: Still Alive
-
->This was a triumph!  
->I'm making a note here:  
->Huge success!  
->  
->It's hard to overstate  
->my satisfaction.  
->  
->Aperture Science:  
->We do what we must  
->because we can  
->For the good of all of us.  
->Except the ones who are dead.  
-
-*[Still Alive](https://www.youtube.com/watch?v=VuLktUzq23c), Portal, 2007, Jonathan Coulton*   
-
-Create a `TestFactory` that assembles a repeatable test using your Stage 3 factories. Use the supplied `ShieldSpec`, `ProjectileSpec`, and `TestSchedule`.
-
-Each test must:
-
-1. Use a saved seed with a `RandomNumberGenerator` to generate one shield specification and between 5 and 10 projectile specifications.
-2. Build the equipment through your Stage 3 factories, including their rating adjustments.
-3. Add the shield and schedule to the scene. Use `TestSchedule` to launch the projectiles in order, waiting each projectile's `charge_time` before launching the next.
-4. Check the shield capacity lost at each impact against the expected loss.
-5. Wait for all projectiles to resolve.
-6. Report huge failure or great success!
-
-
-### Checking an impact
-
-Use the built projectile's damage and type and the built shield's type to calculate expected damage from the Stage 2 table. Use the actual equipment values after factory adjustments, not the original requests.
-
-For each impact, capture the shield level immediately before and immediately after damage is applied:
-
-```text
-expected_damage = projectile_damage * type_factor
-expected_loss = min(expected_damage, shield_level_before)
-observed_loss = shield_level_before - shield_level_after
-```
-
-Compare `expected_loss` with `observed_loss`, allowing a small floating-point tolerance. For example, a 20-damage Energy projectile against a Kinetic shield calculates 40 damage. If the shield has only 15 capacity left, the expected loss is 15, not 40.
-
-Derive expected values from the assignment's table rather than calling the damage service you are testing. Measure around each hit so recharge between hits does not affect the comparison. You do not need to predict the final shield level across the whole volley.
-
-Stage 4 checks that your factories, schedule, damage calculation, and shield work together. You do not need to repeat the complete recharge, property-range, or rating-boundary tests from Stages 1–3 here. Additional timing and boundary cases belong in the optional Debugging and Testing pathway.
-
-### Recording the result
-
-Record the seed, every generated specification, and a named expected-versus-observed check for each impact. Include the adjusted equipment values when they differ from the requests so the result can be reproduced.
-
-Use `TestRunRecord` to save your evidence:
-
-```gdscript
-var report := TestRunRecord.new(seed)
-report.add_specification(shield_spec)
-report.add_specification(projectile_spec)
-report.check_result("impact 1: shield capacity lost", expected_loss, observed_loss)
-print("Test passed: ", report.passed())
-var save_error := report.save_json("user://test_run.json")
-if save_error != OK:
-	push_error("Could not save the test report.")
-```
-
-Add a separately named check for each impact and confirm that all expected impacts were checked before reporting a pass. `passed()` is false if there are no checks or if any check fails; it does not detect missing checks for you.
-
-**Submit:** the seed, recorded inputs and impact results, and steps to run the test from the Godot editor. Demonstrate that an incorrect observed result is reported as a failure, then show a passing run. You may use a clearly labeled deliberate mismatch to demonstrate failure reporting; finding and repairing a real defect is not required for this core stage.
-
-## Optional Developed competency pathways
-
-Choose an optional pathway if you want to submit an additional competency claim. Explain your decisions and show the results.
-
-### Debugging and Testing — extend Stage 4
-
-Choose a nontrivial defect in the actual combat or factory code that you implemented, or use a defect scenario supplied by your instructor. Reproduce it with the `TestFactory`, correct its underlying cause, and add a regression test that fails before the fix and passes afterward. Add tests for at least two boundary or interaction cases, such as:
-
-* a second hit interrupting shield recharge;
-* a hit exceeding the shield's remaining capacity;
-* a factory specification exactly at or slightly above a rating limit; or
-* a sequence of projectiles with different charge times.
-
-**Evidence:** executable tests, an expected-versus-observed failure trace, a concise explanation of the defect and its cause, and a passing regression test.
-
-### Interaction Design — Stage 4.1: Laboratory Operator Console
-
-Design and implement a small laboratory console that lets an operator select or generate a projectile, fire it, start a test run, and understand the shield and test status. Address at least two interaction problems, for example:
-
-* communicating whether a projectile is charging or ready;
-* distinguishing shield recharge delay from active regeneration;
-* explaining why a projectile caused a particular amount of damage; or
-* preventing or explaining attempts to fire while a scheduled test is running.
-
-The supplied dropdown starts with “Random test projectile.” Both Fire and F use the same starter function in [Laboratory](aegis/scripts/laboratory.gd): a random effect type and damage between 5 and 20. This demonstration does not use your factories or a fixed seed.
-
-Replace or extend that selection with your own projectile specifications. Call `LabConsole.set_projectile_options()` with descriptive labels, keep the specs in the same order, and replace `Laboratory._on_console_fire_requested()` with code that builds and fires the selected spec through your factory. The signal supplies its zero-based dropdown index.
-
-Connect the controls and status displays to actual game events.
-
-**Evidence:** a functioning console, a concise explanation of the interaction decisions, and a demonstration of the two scenarios addressed.
-
-### Evaluation and Iteration — extend Stage 3.2
-
-Compare two ways to adjust over-budget specs. Both must meet the limits, but they may preserve different qualities of the requested equipment.
-
-Use the supplied evaluation helpers to compare two policies:
-
-1. Generate a batch with `EvaluationBatch.generate(seed)`. It contains 12 specs by default: six shields and six projectiles. The first shield and first projectile are over budget. Save the seed so you can repeat the comparison.
-2. Use `ExampleAdjustmentPolicy.adjust` as a baseline and write an alternative, or write two policies of your own. Each function must handle both spec types and return an adjusted spec or a non-empty dictionary summary. Reuse your factory adjustment logic rather than writing a separate demonstration version.
-3. Run both policies on the batch with `PolicyEvaluationRunner.compare(...)`. Each policy receives its own copy, so one cannot change the other's input. The result has one row per input: `input`, `policy_a`, and `policy_b`.
-4. Choose one measurable goal. For example: “Keep at least 80% of the requested damage while staying under the projectile rating limit.”
-5. Compare both results against that goal. Change one policy, run the same batch again, and check whether your change helped.
-
-For example, one policy could reduce projectile damage; another could increase charge time. Check the property ranges and ratings, then measure how well each meets your goal. The runner collects outputs; you calculate the ratings and measurements. A full scene simulation is not required for this comparison.
-
-To compare the example with your alternative, put the following in your test scene script. `my_policy` must be a method you implement, not a supplied method:
-
-```gdscript
-var batch := EvaluationBatch.generate(42)
-var results := PolicyEvaluationRunner.compare(
-    batch, ExampleAdjustmentPolicy.adjust, my_policy
-)
-for row in results:
-    print(row)
-```
-
-Run the scene from the Godot editor to inspect the output. The example expects inputs within the Stage 3.1 ranges and modifies the spec it receives; the runner supplies independent copies.
-
-For a request of **50 damage and a 1-second charge**, the example returns **42 damage and the same charge time** (rating 100). For a shield with capacity 250, recharge delay 0.5, and recharge rate 25, it reduces recharge rate to approximately 7.416 (rating approximately 300). Compare these trade-offs with your alternative.
-
-**Submit:** the seed, your goal, both policies, a small before-and-after results table, and a short explanation of whether your revision improved the result.
-
-## Assessment evidence
-
-For each stage or pathway, include:
-
-* the relevant scripts, scenes, and tests;
-* steps to reproduce the result from the Godot editor;
-* expected and observed results; and
-* a short explanation of your design decisions.
-
-Use the [assessment template](aegis/ASSESSMENT_TEMPLATE.md) to organize your submission.
