@@ -9,13 +9,15 @@ extends RigidBody3D
 @export var damage_effect_duration:float = 0.66
 @export var damage_effect_scaling:Curve
 
-#The current shield level. Should be between 0 and capacity.
+#The current shield level. Should be between 0 and max_capacity.
 var current_level:float
 
 var _previous_damage:float
 var _timer:Timer
+var _recharge_delay_timer: Timer
 var _damage_effect_elapsed:float
-
+var _is_recharging: bool = false
+var _is_depleted: bool = false
 
 @onready var _mesh:ShieldMesh = $ShieldMesh
 @onready var _collision_shape:CollisionShape3D = $CollisionShape3D
@@ -25,6 +27,15 @@ var _damage_effect_elapsed:float
 func _ready():
 	current_level = max_capacity
 	signals.shield_hit.connect(_on_shield_hit)
+	
+	_timer = Timer.new()
+	_timer.one_shot = true
+	add_child(_timer)
+	
+	_recharge_delay_timer = Timer.new()
+	_recharge_delay_timer.one_shot = true
+	add_child(_recharge_delay_timer)
+	_recharge_delay_timer.timeout.connect(_on_recharge_delay_timer_timeout)
 
 
 func _process(delta):
@@ -35,9 +46,18 @@ func _process(delta):
 		var scale_factor = ((current_level + _previous_damage * damage_effect_scaling.sample(_damage_effect_elapsed / damage_effect_duration)) / max_capacity)
 		scale_factor = clampf(scale_factor, 0.01, 1.0)
 		new_scale = Vector3.ONE * scale_factor
+		
 	_mesh.scale = new_scale
 	_collision_shape.scale = new_scale
-
+	
+	if current_level == max_capacity:
+		_is_recharging = false
+	
+	if _is_recharging and not _is_depleted:
+		current_level = clamp(
+			current_level + (recharge_rate * delta),
+			0.0,
+			max_capacity)
 
 func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
 	LabLog.physics("Shield-projectile collision detected.")
@@ -46,21 +66,33 @@ func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
 	var damage_delta = previous_current_level - current_level
 	_previous_damage = damage_delta
 	
+	if _is_depleted:
+		return
+	
+
 	var new_indicator:DamageIndicator = _damage_indicator.instantiate() as DamageIndicator
 	new_indicator.set_color(effects.get_type_color(projectile.type))
 	new_indicator.damage = damage_delta
 	$Generator.add_child(new_indicator)
 	
-	_timer = Timer.new()
-	_timer.one_shot = true
-	add_child(_timer)
+
 	_timer.start(damage_effect_duration)
 	_damage_effect_elapsed = 0.0
 	
+	# Restart the recharge timer
+	_is_recharging = false
+	if not _is_depleted:
+		_recharge_delay_timer.start(recharge_delay)
+
 	signals.damage.emit(damage_delta, type)
 	
 	if is_zero_approx(current_level) && !is_zero_approx(previous_current_level):
 		LabLog.failure("Shield annihilated.")
 		LabLog.success("Shield annihilated.")
+		_is_depleted = true
 		signals.shield_down.emit()
-	
+
+
+func _on_recharge_delay_timer_timeout() -> void:
+	if current_level < max_capacity and not _is_depleted:
+		_is_recharging = true
