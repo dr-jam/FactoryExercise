@@ -84,15 +84,14 @@ func _process(delta):
 			max_capacity)
 
 func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
+	if _shield != self or _is_depleted:
+		return
 	LabLog.physics("Shield-projectile collision detected.")
 	var previous_current_level = current_level
 	var applied_damage := DamageEngine.calc_damage(self, projectile)
 	current_level = clampf(current_level - applied_damage, 0, max_capacity)
 	var damage_delta = previous_current_level - current_level
 	_previous_damage = damage_delta
-	
-	if _is_depleted:
-		return
 	
 
 	var new_indicator:DamageIndicator = _damage_indicator.instantiate() as DamageIndicator
@@ -112,8 +111,7 @@ func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
 	signals.damage.emit(damage_delta, type)
 	
 	if is_zero_approx(current_level) && !is_zero_approx(previous_current_level):
-		LabLog.failure("Shield annihilated.")
-		LabLog.success("Shield annihilated.")
+		LabLog.test("Shield depleted.")
 		_is_depleted = true
 		signals.shield_down.emit()
 
