@@ -62,6 +62,33 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.12, 0.15, 0.16, 1)
 
+[sub_resource type="StyleBoxFlat" id="MeterTrack"]
+bg_color = Color(0.69, 0.71, 0.67, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="MeterFill"]
+bg_color = Color(0.22, 0.55, 0.61, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="StyleBoxFlat" id="RechargeFill"]
+bg_color = Color(0.8, 0.47, 0.05, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_left = 3
+corner_radius_bottom_right = 3
+
+[sub_resource type="Theme" id="StatusTheme"]
+default_font_size = 13
+Label/colors/font_color = Color(0.12, 0.15, 0.16, 1)
+ProgressBar/styles/background = SubResource("MeterTrack")
+ProgressBar/styles/fill = SubResource("MeterFill")
+
 [node name="LabConsole" type="CanvasLayer" unique_id=220286526]
 script = ExtResource("1_console")
 
@@ -69,7 +96,7 @@ script = ExtResource("1_console")
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 410.0
-offset_bottom = 310.0
+offset_bottom = 420.0
 theme_override_styles/panel = SubResource("ConsolePanel")
 
 [node name="Margin" type="MarginContainer" parent="Panel" unique_id=2093666680]
@@ -140,35 +167,84 @@ text = "01  /  LIVE TEST STATUS"
 
 [node name="StatusCard" type="PanelContainer" parent="Panel/Margin/VBox" unique_id=975851321]
 layout_mode = 2
+theme = SubResource("StatusTheme")
 theme_override_styles/panel = SubResource("StatusPanel")
 
 [node name="StatusMargin" type="MarginContainer" parent="Panel/Margin/VBox/StatusCard" unique_id=2127613779]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 5
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="StatusStack" type="VBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin" unique_id=549221070]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 6
 
-[node name="ShieldStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=1710040319]
+[node name="ShieldHeader" type="HBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ShieldStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack/ShieldHeader" unique_id=1710040319]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
-text = "SHIELD  /  awaiting implementation"
+size_flags_horizontal = 3
+text = "SHIELD / Initializing"
+
+[node name="ShieldCapacity" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack/ShieldHeader"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0 / 100"
+horizontal_alignment = 2
+
+[node name="CapacityBar" type="ProgressBar" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+step = 0.01
+show_percentage = false
+
+[node name="RechargeStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Fully charged"
+
+[node name="RechargeBar" type="ProgressBar" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+theme_override_styles/fill = SubResource("RechargeFill")
+max_value = 1.0
+step = 0.001
+show_percentage = false
+
+[node name="StatusDivider" type="HSeparator" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+layout_mode = 2
 
 [node name="ProjectileStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=666963830]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
-text = "PROJECTILE  /  awaiting factory integration"
+text = "PROJECTILES / Idle"
+
+[node name="ProjectileScroll" type="ScrollContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 104)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="ProjectileList" type="VBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack/ProjectileScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
 
 [node name="TestStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=1045682139]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(0.12, 0.15, 0.16, 1)
+theme_override_font_sizes/font_size = 11
 text = "TEST SEQUENCE  /  idle"
 
 [node name="SectionTwo" type="Label" parent="Panel/Margin/VBox" unique_id=860545950]
