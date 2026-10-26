@@ -33,6 +33,12 @@ func _ready():
 	LabLog.separator()
 
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("fire_test_sequence"):
+		$TestSequencer.run_test_sequence()
+		get_viewport().set_input_as_handled()
+
+
 func _process(_delta):
 	if(Input.is_action_just_pressed("fire_test_shot")):
 		_fire_random_test_shot()
