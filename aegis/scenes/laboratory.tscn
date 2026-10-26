@@ -20,6 +20,26 @@ damage = 30.0
 type = 2
 metadata/_custom_type_script = "uid://q0qhldgt8d3h"
 
+[sub_resource type="Resource" id="Resource_kinetic"]
+script = ExtResource("6_1du3q")
+damage = 12.0
+charge_time = 0.75
+metadata/_custom_type_script = "uid://q0qhldgt8d3h"
+
+[sub_resource type="Resource" id="Resource_energy"]
+script = ExtResource("6_1du3q")
+damage = 18.0
+charge_time = 1.25
+type = 1
+metadata/_custom_type_script = "uid://q0qhldgt8d3h"
+
+[sub_resource type="Resource" id="Resource_arcane"]
+script = ExtResource("6_1du3q")
+damage = 10.0
+charge_time = 2.5
+type = 2
+metadata/_custom_type_script = "uid://q0qhldgt8d3h"
+
 [node name="Laboratory" type="Node3D" unique_id=1901041592]
 script = ExtResource("1_kj31b")
 
@@ -36,7 +56,7 @@ shield_in_factory = NodePath("../ShieldApparatus")
 [node name="TestSequencer" type="Node" parent="." unique_id=1353173013]
 unique_name_in_owner = true
 script = ExtResource("5_h2vy4")
-projectile_sequence = Array[ExtResource("6_1du3q")]([ExtResource("7_i7dll"), SubResource("Resource_1du3q")])
+projectile_sequence = Array[ExtResource("6_1du3q")]([SubResource("Resource_1du3q"), SubResource("Resource_kinetic"), SubResource("Resource_energy"), SubResource("Resource_arcane"), ExtResource("7_i7dll")])
 shield = ExtResource("6_mhqq6")
 
 [node name="WeaponApparatus" parent="." unique_id=1633593315 instance=ExtResource("3_52x5l")]
