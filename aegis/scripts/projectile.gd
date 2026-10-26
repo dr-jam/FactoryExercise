@@ -1,12 +1,15 @@
 class_name Projectile
 extends RigidBody3D
 
+signal resolved(hit: bool)
+
 const DEFAULT_SPEED:float = 10.0
 
 @export var damage:float = 20.0
 @export var charge_time:float = 0.01
 @export var type:Effects.Type = Effects.Type.KENETIC
 @export var acceleration:Curve
+@export_range(0.1, 60.0) var max_flight_time: float = 8.0
 
 var speed:float = DEFAULT_SPEED
 
@@ -14,6 +17,7 @@ var elapsed_time:float
 
 var _timer:Timer
 var _fired = false
+var _resolved := false
 
 @onready var _body:CSGSphere3D = $Body
 
@@ -45,10 +49,22 @@ func _process(delta):
 			_fired = true
 			signals.fire.emit(type)
 		elapsed_time += delta
+		if elapsed_time >= max_flight_time:
+			LabLog.test("Projectile missed: flight time expired.")
+			_resolve(false)
+			return
 		linear_velocity.x = -acceleration.sample(elapsed_time) * speed
 
 
 func _on_body_entered(body):
-	if body is Shield:
+	if body is Shield and not _resolved:
 		signals.shield_hit.emit(body as Shield, self)
-		queue_free()
+		_resolve(true)
+
+
+func _resolve(hit: bool) -> void:
+	if _resolved:
+		return
+	_resolved = true
+	resolved.emit(hit)
+	queue_free()
