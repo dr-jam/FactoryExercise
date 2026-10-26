@@ -27,7 +27,7 @@ buses/default_bus_layout="uid://w5ee687iyeu6"
 
 effects="*res://scripts/effects.gd"
 signals="*res://scripts/signals.gd"
-LabLog="*uid://d3iuqhd7da3i0"
+LabLog="*res://scripts/lab_log.gd"
 
 [debug]
 
@@ -39,10 +39,6 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/mode=2
 window/stretch/mode="canvas_items"
-
-[editor]
-
-movie_writer/movie_file="C:/Users/josh/git/FactoryExerciseKey/aegis/exercise3-sample.avi"
 
 [editor_plugins]
 
