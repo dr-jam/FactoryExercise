@@ -38,6 +38,18 @@ func _ready():
 	_recharge_delay_timer.timeout.connect(_on_recharge_delay_timer_timeout)
 
 
+func reset_for_test() -> void:
+	current_level = max_capacity
+	_previous_damage = 0.0
+	_damage_effect_elapsed = 0.0
+	_is_recharging = false
+	_is_depleted = false
+	if _timer != null:
+		_timer.stop()
+	if _recharge_delay_timer != null:
+		_recharge_delay_timer.stop()
+
+
 func _process(delta):
 	#animated shield scale based on damage done
 	var new_scale:Vector3 = Vector3.ONE * clampf(current_level / max_capacity, 0.01, 1.0)
@@ -62,7 +74,8 @@ func _process(delta):
 func _on_shield_hit(_shield:Shield, projectile:Projectile) -> void:
 	LabLog.physics("Shield-projectile collision detected.")
 	var previous_current_level = current_level
-	current_level = clampf(current_level - projectile.damage, 0, max_capacity)
+	var applied_damage := DamageEngine.calc_damage(self, projectile)
+	current_level = clampf(current_level - applied_damage, 0, max_capacity)
 	var damage_delta = previous_current_level - current_level
 	_previous_damage = damage_delta
 	
