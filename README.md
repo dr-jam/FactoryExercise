@@ -12,7 +12,7 @@ Your comptency claims and other information we need to know to best grade your w
 #### Implementation
 *What you changed, with links or paths to the relevant scripts and scenes.*
 #### Reasoning
-*Why you made those decisions; cite the reading or course concept when required.*
+*Why you made those decisions. Cite the reading or course concept when required.*
 #### Demonstration
 *Steps we can follow to reproduce the feature and the contrasting or edge cases requested above.*
 #### Results
@@ -37,13 +37,13 @@ Aegis is a Godot 4 project that manufactures shields and projectiles using the F
 
 Your assignment is to extend it. You can change the rules, change how someone interacts with the laboratory, or turn the test into a different kind of game. The change needs to work, and you need to explain the decisions behind it.
 
-There are four competencies available: Game Design Reasoning, Design Context, System Interrelations, and Interaction Design. Demonstrate any two at Developed to receive the exercise completion bonus. You may use one extension as evidence for multiple competencies, but each claim needs its own justification. There are no stage scores or points; the course competency guide explains how claims are assessed.
+There are four competencies available: Game Design Reasoning, Design Context, System Interrelations, and Interaction Design. Demonstrate any two at Developed to receive the exercise completion bonus. You may use one extension as evidence for multiple competencies, but each claim needs its own justification. There are no stage scores or points and the course competency guide explains how claims are assessed.
 
 ## Competency assessment and submission
 
 ## The supplied project
 
-Open `aegis` in Godot 4 and run the `Laboratory` scene. It provides:
+Open `aegis` in Godot and run the `Laboratory` scene. It provides:
 
 - Shields that take damage and recharge after a delay.
 - Kinetic, Energy, and Arcane damage types.
@@ -89,11 +89,11 @@ shield_rating = max_capacity + (5.0 - recharge_delay) * 5.0 + recharge_rate * (r
 projectile_rating = damage * 2.0 + (3.0 - charge_time) ** 4.0
 ```
 
-The shield rating limit is **300**; the projectile rating limit is **100**. You may change the rules if your design requires it. Document the changes and their effects. The original test should continue to run unless replacing its behavior is part of your extension.
+The shield rating limit is **300** and the projectile rating limit is **100**. You may change the rules if your design requires it. Document the changes and their effects. The original test should continue to run unless replacing its behavior is part of your extension.
 
 ### Scene and scripts
 
-The `Laboratory` scene contains the test environment, the shield apparatus, and the weapon apparatus. The shield spawns at the shield apparatus; the weapon fires projectiles from its projectile spawn point.
+The `Laboratory` scene contains the test environment, the shield apparatus, and the weapon apparatus. The shield spawns at the shield apparatus. The weapon fires projectiles from its projectile spawn point.
 
 Scripts relevant to this exercise include:
 
@@ -143,7 +143,7 @@ You could have the test schedule respond to the shield's current state and obser
 
 Use the existing scenes, nodes, and signals where they make sense. Don't maintain several copies of the same state or recalculate damage in different places.
 
-For **Developed**, show the feature working and identify the **three or more systems** involved. Explain their responsibilities and interfaces; a small diagram is fine. Demonstrate a normal run and a troublesome one—for example, an interrupted test, insufficient power, an invalid specification, or conflicting events—and show that the systems remain consistent.
+For **Developed**, show the feature working and identify the **three or more systems** involved. Explain their responsibilities and interfaces. Diagrams are excellent tools for this task. Demonstrate a normal run and a troublesome one—for example, an interrupted test, insufficient power, an invalid specification, or conflicting events—and show that the systems remain consistent.
 
 Relevant course material: components, Godot nodes/signals, and Nystrom's [*Game Programming Patterns*: Observer](https://gameprogrammingpatterns.com/observer.html).
 
