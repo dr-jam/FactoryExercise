@@ -38,6 +38,26 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.12, 0.15, 0.16, 1)
 
+[sub_resource type="StyleBoxFlat" id="MeterTrack"]
+bg_color = Color(0.69, 0.71, 0.67, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="MeterFill"]
+bg_color = Color(0.22, 0.55, 0.61, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="Theme" id="StatusTheme"]
+default_font_size = 13
+Label/colors/font_color = Color(0.12, 0.15, 0.16, 1)
+ProgressBar/styles/background = SubResource("MeterTrack")
+ProgressBar/styles/fill = SubResource("MeterFill")
+
 [sub_resource type="StyleBoxFlat" id="StatusPanel"]
 bg_color = Color(0.83, 0.84, 0.8, 1)
 border_width_left = 2
@@ -45,6 +65,13 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.25, 0.3, 0.31, 1)
+
+[sub_resource type="StyleBoxFlat" id="RechargeFill"]
+bg_color = Color(0.8, 0.47, 0.05, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id="ActionNormal"]
 bg_color = Color(0.96, 0.65, 0.08, 1)
@@ -61,33 +88,6 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.12, 0.15, 0.16, 1)
-
-[sub_resource type="StyleBoxFlat" id="MeterTrack"]
-bg_color = Color(0.69, 0.71, 0.67, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_left = 3
-corner_radius_bottom_right = 3
-
-[sub_resource type="StyleBoxFlat" id="MeterFill"]
-bg_color = Color(0.22, 0.55, 0.61, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_left = 3
-corner_radius_bottom_right = 3
-
-[sub_resource type="StyleBoxFlat" id="RechargeFill"]
-bg_color = Color(0.8, 0.47, 0.05, 1)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_left = 3
-corner_radius_bottom_right = 3
-
-[sub_resource type="Theme" id="StatusTheme"]
-default_font_size = 13
-Label/colors/font_color = Color(0.12, 0.15, 0.16, 1)
-ProgressBar/styles/background = SubResource("MeterTrack")
-ProgressBar/styles/fill = SubResource("MeterFill")
 
 [node name="LabConsole" type="CanvasLayer" unique_id=220286526]
 script = ExtResource("1_console")
@@ -181,7 +181,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="ShieldHeader" type="HBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+[node name="ShieldHeader" type="HBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=629973259]
 layout_mode = 2
 theme_override_constants/separation = 8
 
@@ -191,26 +191,25 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "SHIELD / Initializing"
 
-[node name="ShieldCapacity" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack/ShieldHeader"]
+[node name="ShieldCapacity" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack/ShieldHeader" unique_id=1198417857]
 unique_name_in_owner = true
 layout_mode = 2
 text = "0 / 100"
 horizontal_alignment = 2
 
-[node name="CapacityBar" type="ProgressBar" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+[node name="CapacityBar" type="ProgressBar" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=462886676]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-step = 0.01
 show_percentage = false
 
-[node name="RechargeStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+[node name="RechargeStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=1634430331]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Fully charged"
 
-[node name="RechargeBar" type="ProgressBar" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+[node name="RechargeBar" type="ProgressBar" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=565441870]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
@@ -219,7 +218,7 @@ max_value = 1.0
 step = 0.001
 show_percentage = false
 
-[node name="StatusDivider" type="HSeparator" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+[node name="StatusDivider" type="HSeparator" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=396218854]
 layout_mode = 2
 
 [node name="ProjectileStatus" type="Label" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=666963830]
@@ -227,14 +226,14 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "PROJECTILES / Idle"
 
-[node name="ProjectileScroll" type="ScrollContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack"]
+[node name="ProjectileScroll" type="ScrollContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack" unique_id=1089848247]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(0, 104)
 layout_mode = 2
 horizontal_scroll_mode = 0
 
-[node name="ProjectileList" type="VBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack/ProjectileScroll"]
+[node name="ProjectileList" type="VBoxContainer" parent="Panel/Margin/VBox/StatusCard/StatusMargin/StatusStack/ProjectileScroll" unique_id=1864805177]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
