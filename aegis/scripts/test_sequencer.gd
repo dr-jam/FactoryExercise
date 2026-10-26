@@ -6,36 +6,44 @@ extends Node
 @export var shield:ShieldSpec
 
 
-var _current_projectile : Projectile
-var _testing : bool = false
+var _current_projectile: Projectile
+var _testing := false
+var _remaining_projectiles: Array[ProjectileSpec] = []
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
+	if _testing and _current_projectile == null:
+		_fire_next_projectile()
+
+
+func run_test_sequence() -> void:
 	if _testing:
-		if null == _current_projectile:
-			if projectile_sequence.is_empty():
-				LabLog.test("Test sequence terminated.")
-				_testing  = false
-			else:
-			# get a new projectile
-				_current_projectile = %ProjectileFactory.build(projectile_sequence.pop_front())
-				%WeaponApparatus.fire(_current_projectile)
-			
-
-
-
-func run_test_sequence():
-	if null == shield || projectile_sequence.is_empty():
-		LabLog.test("The sequnce is missing a shield or the projectile sequence.")
+		LabLog.test("A test sequence is already running.")
 		return
-	
-	# initialize the shield and fire the first projectile
-	%ShieldFactory.build(shield)
-	
-	_current_projectile = %ProjectileFactory.build(projectile_sequence.pop_front())
-	%WeaponApparatus.fire(_current_projectile)
-	#for projectile_spec in projectile_sequence:
-		#var projectile = %ProjectileFactory.build(projectile_spec)
-		#%WeaponApparatus.fire(projectile)
+	if shield == null or projectile_sequence.size() < 5 or projectile_sequence.size() > 10:
+		LabLog.test("The test requires a shield and a sequence of 5-10 projectiles.")
+		return
 
+	var built_shield: Shield = %ShieldFactory.build(shield)
+	if built_shield == null:
+		return
+
+	_remaining_projectiles = projectile_sequence.duplicate()
 	_testing = true
+	_fire_next_projectile()
+
+
+func _fire_next_projectile() -> void:
+	if _remaining_projectiles.is_empty():
+		LabLog.test("Test sequence terminated.")
+		_testing = false
+		_current_projectile = null
+		return
+
+	var projectile_spec: ProjectileSpec = _remaining_projectiles.pop_front()
+	_current_projectile = %ProjectileFactory.build(projectile_spec)
+	if _current_projectile == null:
+		_testing = false
+		_remaining_projectiles.clear()
+		return
+	%WeaponApparatus.fire(_current_projectile)
