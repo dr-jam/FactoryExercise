@@ -59,9 +59,10 @@ script = ExtResource("5_h2vy4")
 projectile_sequence = Array[ExtResource("6_1du3q")]([SubResource("Resource_1du3q"), SubResource("Resource_kinetic"), SubResource("Resource_energy"), SubResource("Resource_arcane"), ExtResource("7_i7dll")])
 shield = ExtResource("6_mhqq6")
 
-[node name="WeaponApparatus" parent="." unique_id=1633593315 instance=ExtResource("3_52x5l")]
+[node name="WeaponApparatus" parent="." unique_id=1633593315 node_paths=PackedStringArray("projectile_factory") instance=ExtResource("3_52x5l")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 0)
+projectile_factory = NodePath("../ProjectileFactory")
 
 [node name="ShieldApparatus" parent="." unique_id=1866121915 instance=ExtResource("2_gtrca")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 0)

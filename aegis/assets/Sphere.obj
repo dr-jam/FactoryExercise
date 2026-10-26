@@ -1,6 +1,5 @@
 # Blender 3.5.1
 # www.blender.org
-mtllib Sphere_Fine.mtl
 o Icosphere
 v 0.019555 -0.994670 0.060184
 v 0.723090 -0.490627 0.479373
