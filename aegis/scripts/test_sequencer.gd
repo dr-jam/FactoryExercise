@@ -25,6 +25,10 @@ func _physics_process(delta: float) -> void:
 
 
 func run_test_sequence():
+	if null == shield || projectile_sequence.is_empty():
+		LabLog.test("The sequnce is missing a shield or the projectile sequence.")
+		return
+	
 	# initialize the shield and fire the first projectile
 	%ShieldFactory.build(shield)
 	
