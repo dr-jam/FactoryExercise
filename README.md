@@ -158,7 +158,7 @@ You could have the test schedule respond to the shield's current state and obser
 
 Use the existing scenes, nodes, and signals where they make sense. Don't dpulicate same state or recalculate damage in different places.
 
-For **Developed**, show the feature working and identify the **three or more systems** involved. Explain their responsibilities and interfaces. Diagrams are excellent tools for this task. Demonstrate a normal run and a troublesome one—for example, an interrupted test, insufficient power, an invalid specification, or conflicting events—and show that the systems remain consistent.
+For **Developed**, show the feature working and identify the **three or more systems** involved. Explain their responsibilities and interfaces. Diagrams are excellent tools for this task. Demonstrate a normal run and a troublesome one (e.g., an interrupted test, insufficient power, an invalid specification, or conflicting events) and show that the systems remain consistent.
 
 Relevant course material: components, Godot nodes/signals, and Nystrom's [*Game Programming Patterns*: Observer](https://gameprogrammingpatterns.com/observer.html).
 
